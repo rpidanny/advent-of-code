@@ -1,10 +1,10 @@
-const { getInputLines } = require("../../utils/input");
+const { getInputLines } = require("../utils/input");
 const {
   getTotalCaloriesPerElf,
   getCaloriesSumOfTopKElves,
 } = require("./helpers");
 
-const foodItems = getInputLines("./Solutions/Day1/input.txt");
+const foodItems = getInputLines("./Day1/input.txt");
 
 const totalCaloriesPerElf = getTotalCaloriesPerElf(foodItems);
 
