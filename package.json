@@ -1,0 +1,24 @@
+{
+  "name": "aoc2022",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:watch:day": "jest --watch Day3/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpidanny/aoc2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpidanny/aoc2022/issues"
+  },
+  "homepage": "https://github.com/rpidanny/aoc2022#readme",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
