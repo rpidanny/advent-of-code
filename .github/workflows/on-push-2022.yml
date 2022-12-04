@@ -1,13 +1,13 @@
-name: On Push
+name: On Push - 2022
 
 on:
   push:
-    # branches-ignore:
-    #   - 'main'
+    paths:
+      - 2022/**
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  test:
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,11 +15,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
+
       - run: npm ci
-      - run: npm run build --if-present
+        working-directory: ./2022
+
       - run: npm test
+        working-directory: ./2022

@@ -1,3 +1,3 @@
 module.exports = {
-  day: 4,
+  day: '04',
 };
