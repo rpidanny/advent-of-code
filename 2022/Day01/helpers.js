@@ -10,6 +10,11 @@ const getTotalCaloriesPerElf = (foodItems) => {
       calories += parseInt(food, 10);
     }
   }
+
+  if (calories) {
+    totalCalories.push(calories);
+  }
+
   return totalCalories.sort((a, b) => b - a);
 };
 
@@ -24,5 +29,5 @@ const getCaloriesSumOfTopKElves = (totalCaloriesPerElves, k) => {
 
 module.exports = {
   getTotalCaloriesPerElf,
-  getCaloriesSumOfTopKElves
+  getCaloriesSumOfTopKElves,
 };
