@@ -1,14 +1,21 @@
-const { getInputLines } = require("../utils/input");
 const {
   getGames,
   getTotalScoreFromGamePlay,
   getTotalScoreFromGameConditions,
 } = require("./helpers");
 
-const rawInput = getInputLines("./Day2/input.txt");
-// const rawGames = getInputLines("./Day2/test.input.txt");
+const step1 = (inputs) => {
+  const games = getGames(inputs);
+  return getTotalScoreFromGamePlay(games);
+};
 
-const games = getGames(rawInput);
+const step2 = (inputs) => {
+  const games = getGames(inputs);
 
-console.log(`Step1: ${getTotalScoreFromGamePlay(games)}`);
-console.log(`Step2: ${getTotalScoreFromGameConditions(games)}`);
+  return getTotalScoreFromGameConditions(games);
+};
+
+module.exports = {
+  step1,
+  step2,
+};
