@@ -1,9 +1,10 @@
-name: On Push - 2022
+name: 2022 - On Push
 
 on:
   push:
     paths:
       - 2022/**
+      - .github/workflows/2022*
 
 jobs:
   test:
