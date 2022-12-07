@@ -1,0 +1,66 @@
+{
+  "/": {
+    "type": "directory",
+    "size": 48381165,
+    "content": {
+      "a": {
+        "type": "directory",
+        "size": 94853,
+        "content": {
+          "e": {
+            "type": "directory",
+            "size": 584,
+            "content": {
+              "i": {
+                "type": "file",
+                "size": 584
+              }
+            }
+          },
+          "f": {
+            "type": "file",
+            "size": 29116
+          },
+          "g": {
+            "type": "file",
+            "size": 2557
+          },
+          "h.lst": {
+            "type": "file",
+            "size": 62596
+          }
+        }
+      },
+      "b.txt": {
+        "type": "file",
+        "size": 14848514
+      },
+      "c.dat": {
+        "type": "file",
+        "size": 8504156
+      },
+      "d": {
+        "type": "directory",
+        "size": 24933642,
+        "content": {
+          "j": {
+            "type": "file",
+            "size": 4060174
+          },
+          "d.log": {
+            "type": "file",
+            "size": 8033020
+          },
+          "d.ext": {
+            "type": "file",
+            "size": 5626152
+          },
+          "k": {
+            "type": "file",
+            "size": 7214296
+          }
+        }
+      }
+    }
+  }
+}
