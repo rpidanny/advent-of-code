@@ -15,32 +15,41 @@ const printVisibleTrees = (grid, visibleTrees) => {
   }
 };
 
+const isValidCell = (grid, r, c) => {
+  return r >= 0 && r < grid.length && c >= 0 && c < grid[0].length;
+};
+
 const calculateScenicScoreOfCell = (grid, r, c) => {
-  let bottomTrees = 0;
-  let topTrees = 0;
-  let leftTrees = 0;
-  let rightTrees = 0;
+  const directions = [
+    [0, 1], // right
+    [0, -1], // left
+    [1, 0], // down
+    [-1, 0], // up
+  ];
 
-  for (let row = r + 1; row < grid.length; row++) {
-    bottomTrees++;
-    if (grid[row][c] >= grid[r][c]) break;
-  }
-  for (let row = r - 1; row >= 0; row--) {
-    topTrees++;
-    if (grid[row][c] >= grid[r][c]) break;
+  let scenicScore = 1;
+
+  for (const [dr, dc] of directions) {
+    let score = 0;
+    let row = r + dr;
+    let col = c + dc;
+
+    while (isValidCell(grid, row, col)) {
+      score++;
+
+      if (grid[row][col] >= grid[r][c]) break;
+
+      row += dr;
+      col += dc;
+    }
+
+    // exit early if score = 0 since 0 * any number = 0;
+    if (score === 0) return 0;
+
+    scenicScore *= score;
   }
 
-  for (let col = c + 1; col < grid[r].length; col++) {
-    rightTrees++;
-    if (grid[r][col] >= grid[r][c]) break;
-  }
-
-  for (let col = c - 1; col >= 0; col--) {
-    leftTrees++;
-    if (grid[r][col] >= grid[r][c]) break;
-  }
-
-  return bottomTrees * topTrees * leftTrees * rightTrees;
+  return scenicScore;
 };
 
 module.exports = {
