@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:watch:day": "jest --watch Day13/*.spec.js"
+    "test:watch:day": "jest --watch Day14/*.spec.js"
   },
   "repository": {
     "type": "git",
