@@ -1,0 +1,30 @@
+name: 2023 - On Push
+
+on:
+  push:
+    paths:
+      - 2023/**
+      - .github/workflows/2023*
+env:
+  NODE_VERSION: 18.x
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: ./2023/package-lock.json
+
+      - run: npm ci
+        working-directory: ./2023
+
+      - run: npm test
+        working-directory: ./2023

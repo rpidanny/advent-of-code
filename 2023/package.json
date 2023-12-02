@@ -4,8 +4,7 @@
   "description": "Advent Of Code 2023",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "tsc --init"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
