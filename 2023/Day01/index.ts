@@ -1,15 +1,8 @@
 import { getInputLines } from "../utils/input";
-import { day } from "./config";
 import { step1, step2 } from "./solutions";
+import path from "path";
 
-const TEST_MODE = true;
-
-const rawInputs = getInputLines(
-  TEST_MODE ? `./Day${day}/test.input.txt` : `./Day${day}/input.txt`
-);
-const rawInputs2 = getInputLines(
-  TEST_MODE ? `./Day${day}/test.input.2.txt` : `./Day${day}/input.txt`
-);
+const rawInputs = getInputLines(path.join(__dirname, `./input.txt`));
 
 console.log(`Step1: ${step1(rawInputs)}`);
-console.log(`Step2: ${step2(rawInputs2)}`);
+console.log(`Step2: ${step2(rawInputs)}`);
