@@ -5,7 +5,7 @@ import path from "path";
 describe("Solutions: Day 4", () => {
   describe("test", () => {
     let input = getInputLines(path.join(__dirname, `./test.input.txt`));
-    test.skip("step 1", () => {
+    test("step 1", () => {
       expect(step1(input)).toEqual(13);
     });
 
@@ -14,7 +14,7 @@ describe("Solutions: Day 4", () => {
     });
   });
 
-  describe.skip("real", () => {
+  describe("real", () => {
     let input = getInputLines(path.join(__dirname, `./input.txt`));
     test("step 1", () => {
       expect(step1(input)).toEqual(18519);
