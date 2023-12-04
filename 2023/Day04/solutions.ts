@@ -1,7 +1,7 @@
 import {
   calculateCardPoints,
   getCardsMap,
-  getMatchingNumbers,
+  getMatchingNumbersCount,
   parseInput,
 } from "./helpers";
 
@@ -30,7 +30,7 @@ export function step2(inputs: string[]) {
 
   for (let i = inputs.length; i > 0; i--) {
     const { winning, own } = cardsMap.get(i);
-    const matchingNumbers = getMatchingNumbers(winning, own);
+    const matchingNumbers = getMatchingNumbersCount(winning, own);
 
     for (let j = 0; j < matchingNumbers; j++) {
       dp[i] += dp[i + j + 1];

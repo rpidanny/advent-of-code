@@ -42,7 +42,10 @@ export function calculateCardPoints(winning: number[], own: number[]): number {
   return currentPoints;
 }
 
-export function getMatchingNumbers(winning: number[], own: number[]): number {
+export function getMatchingNumbersCount(
+  winning: number[],
+  own: number[]
+): number {
   let matchingNumbers = 0;
   const winningSet = new Set(winning);
 
