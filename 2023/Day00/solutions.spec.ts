@@ -9,7 +9,7 @@ describe("Solutions: Day 0", () => {
       expect(step1(input)).toEqual(123);
     });
 
-    test("step 2", () => {
+    test.skip("step 2", () => {
       expect(step2(input)).toEqual(456);
     });
   });

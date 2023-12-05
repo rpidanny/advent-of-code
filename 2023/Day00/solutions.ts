@@ -1,6 +1,6 @@
 import {} from "./helpers";
 
-// Part 1;
+// Part 1:
 export function step1(inputs: string[]) {
   // TODO: implement part 1 solution
   return 123;
