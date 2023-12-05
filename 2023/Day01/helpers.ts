@@ -26,7 +26,7 @@ export function findFirstInt(str: string, forward = true): number {
       ? str.substring(0, pointer + 1)
       : str.substring(pointer);
     const matches = subStr.match(
-      /zero|one|two|three|four|five|six|seven|eight|nine/
+      /zero|one|two|three|four|five|six|seven|eight|nine/,
     );
     if (matches && digitStrings[matches[0]]) {
       num = digitStrings[matches[0]];

@@ -1,51 +1,45 @@
 import { Worker } from "worker_threads";
-import { parseInput, getSeedToLocationMapping } from "./helpers";
-import { timeExecution } from "../utils/timings";
 
-export class Solutions {
-  // Part 1: lowest location number
-  @timeExecution
-  step1(inputs: string[]) {
-    const { seeds, mappings } = parseInput(inputs);
+import { getSeedToLocationMapping, parseInput } from "./helpers";
 
-    let minLocation = Infinity;
+// Part 1: lowest location number
+export function part1(inputs: string[]) {
+  const { seeds, mappings } = parseInput(inputs);
 
-    for (const seed of seeds) {
-      const location = getSeedToLocationMapping(seed, mappings);
-      minLocation = Math.min(minLocation, location);
-    }
+  let minLocation = Infinity;
 
-    return minLocation;
+  for (const seed of seeds) {
+    const location = getSeedToLocationMapping(seed, mappings);
+    minLocation = Math.min(minLocation, location);
   }
 
-  // Part 2: lowest location number from seed range
-  @timeExecution
-  async step2(inputs: string[]) {
-    const { seeds, mappings } = parseInput(inputs);
+  return minLocation;
+}
 
-    const chunks: number[][] = [];
-    for (let i = 0; i < seeds.length - 1; i += 2) {
-      chunks.push([seeds[i], seeds[i + 1]]);
-    }
+// Part 2: lowest location number from seed range
+export async function part2(inputs: string[]) {
+  const { seeds, mappings } = parseInput(inputs);
 
-    const tasks = chunks.map(
-      ([seedStart, seedRangeLength]): Promise<number> => {
-        return new Promise((resolve, reject) => {
-          const worker = new Worker("./Day05/worker.js", {
-            workerData: { seedStart, seedRangeLength, mappings },
-          });
-          worker.on("message", resolve);
-          worker.on("error", reject);
-          worker.on("exit", (code) => {
-            if (code !== 0)
-              reject(new Error(`Worker stopped with exit code ${code}`));
-          });
-        });
-      }
-    );
-
-    const minLocations = await Promise.all<number>(tasks);
-
-    return Math.min(...minLocations);
+  const chunks: number[][] = [];
+  for (let i = 0; i < seeds.length - 1; i += 2) {
+    chunks.push([seeds[i], seeds[i + 1]]);
   }
+
+  const tasks = chunks.map(([seedStart, seedRangeLength]): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const worker = new Worker("./Day05/worker.js", {
+        workerData: { seedStart, seedRangeLength, mappings },
+      });
+      worker.on("message", resolve);
+      worker.on("error", reject);
+      worker.on("exit", (code) => {
+        if (code !== 0)
+          reject(new Error(`Worker stopped with exit code ${code}`));
+      });
+    });
+  });
+
+  const minLocations = await Promise.all<number>(tasks);
+
+  return Math.min(...minLocations);
 }

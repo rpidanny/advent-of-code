@@ -64,7 +64,7 @@ export function mapValue(value: number, mappings: IMapping[]): number {
   const mapping = mappings.find(
     (mapping) =>
       mapping.srcRangeStart <= value &&
-      mapping.srcRangeStart + mapping.rangeLength > value
+      mapping.srcRangeStart + mapping.rangeLength > value,
   );
 
   if (!mapping) return value;
@@ -76,7 +76,7 @@ export function mapValue(value: number, mappings: IMapping[]): number {
 
 export function getSeedToLocationMapping(
   seed: number,
-  mappings: IAlmanac["mappings"]
+  mappings: IAlmanac["mappings"],
 ): number {
   const soil = mapValue(seed, mappings.seedToSoil);
   const fertilizer = mapValue(soil, mappings.soilToFertilizer);
@@ -93,7 +93,7 @@ export function getSeedToLocationMapping(
 export function getMinimumLocation(
   seedStart: number,
   seedRangeLength: number,
-  mappings: IAlmanac["mappings"]
+  mappings: IAlmanac["mappings"],
 ): number {
   let minLocation = Infinity;
 

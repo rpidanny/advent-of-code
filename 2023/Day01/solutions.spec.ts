@@ -1,6 +1,7 @@
+import path from "path";
+
 import { getInputLines } from "../utils/input";
 import { step1, step2 } from "./solutions";
-import path from "path";
 
 describe("Solutions: Day 1", () => {
   test("step 1", () => {

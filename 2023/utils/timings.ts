@@ -1,24 +1,20 @@
+import chalk from "chalk";
 import prettyMilliseconds from "pretty-ms";
 
-export function timeExecution(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-): void {
-  const originalMethod = descriptor.value;
+export async function profileRun<T = number>(
+  name: string,
+  func: () => T,
+): Promise<{ result: T; duration: number }> {
+  const start = performance.now();
+  const result = await func();
+  const end = performance.now();
+  const duration = end - start;
 
-  descriptor.value = async function (...args: any[]): Promise<any> {
-    const start = performance.now();
-    const result = await originalMethod.apply(this, args);
-    const end = performance.now();
-    const duration = end - start;
+  console.log(
+    `${chalk.magenta(name)}: ${chalk.green(result)} ${chalk.italic.dim(
+      `(executed in ${prettyMilliseconds(duration)})`,
+    )}`,
+  );
 
-    console.log(
-      `${propertyKey}: ${result}  - (executed in ${prettyMilliseconds(
-        duration
-      )})`
-    );
-
-    return result;
-  };
+  return { result, duration };
 }

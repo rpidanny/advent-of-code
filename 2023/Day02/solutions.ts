@@ -12,7 +12,7 @@ export function step1(inputs: string[]): number {
 
   for (const game of inputs) {
     const [gameName, sets] = game.split(": ");
-    const [_, gameId] = gameName.split(" ");
+    const [, gameId] = gameName.split(" ");
     let gameInvalid = false;
 
     for (const set of sets.split("; ")) {
@@ -40,7 +40,7 @@ export function step2(inputs: string[]): number {
   let sumPower = 0;
 
   for (const game of inputs) {
-    const [_, sets] = game.split(": ");
+    const [, sets] = game.split(": ");
     const maxColors: Record<string, number> = {
       red: 0,
       green: 0,

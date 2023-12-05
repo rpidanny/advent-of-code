@@ -44,7 +44,7 @@ export function calculateCardPoints(winning: number[], own: number[]): number {
 
 export function getMatchingNumbersCount(
   winning: number[],
-  own: number[]
+  own: number[],
 ): number {
   let matchingNumbers = 0;
   const winningSet = new Set(winning);

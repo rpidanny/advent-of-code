@@ -26,5 +26,8 @@ jobs:
       - run: npm ci
         working-directory: ./2023
 
+      - run: npm run lint
+        working-directory: ./2023
+
       - run: npm test
         working-directory: ./2023

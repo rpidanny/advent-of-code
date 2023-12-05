@@ -14,10 +14,10 @@ export function getNumber(
   inputs: string[],
   row: number,
   col: number,
-  visited: Set<string>
+  visited: Set<string>,
 ): number {
   visited.add(`${row},${col}`);
-  let number = [inputs[row][col]];
+  const number = [inputs[row][col]];
 
   let c1 = col + 1;
   while (isIndexValid(inputs, row, c1)) {
@@ -39,14 +39,14 @@ export function getNumber(
 export function findAdjacentNumbers(
   inputs: string[],
   row: number,
-  col: number
+  col: number,
 ): number[] {
   const adjacentNumbers: number[] = [];
   const visited = new Set<string>();
 
   for (const [dr, dc] of directions) {
-    let r = row + dr;
-    let c = col + dc;
+    const r = row + dr;
+    const c = col + dc;
 
     if (visited.has(`${r},${c}`)) continue;
     if (!isIndexValid(inputs, r, c)) continue;

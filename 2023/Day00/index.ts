@@ -1,8 +1,12 @@
-import { getInputLines } from "../utils/input";
-import { step1, step2 } from "./solutions";
 import path from "path";
+
+import { getInputLines } from "../utils/input";
+import { profileRun } from "../utils/timings";
+import { part1, part2 } from "./solutions";
 
 const rawInputs = getInputLines(path.join(__dirname, `./input.txt`));
 
-console.log(`Step1: ${step1(rawInputs)}`);
-console.log(`Step2: ${step2(rawInputs)}`);
+(async () => {
+  await profileRun("Part 1", () => part1(rawInputs));
+  await profileRun("Part 2", () => part2(rawInputs));
+})();

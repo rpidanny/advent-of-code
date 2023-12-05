@@ -1,4 +1,4 @@
-import { Heap, IComparator } from "./heap";
+import { Heap } from "./heap";
 
 describe("heap", () => {
   const numbers = [10, 17, 9, 29, 2, 100, 88, 1, -1, 0, 89, -8];

@@ -1,0 +1,11 @@
+{
+  "extends": "@rpidanny/eslint-config-typescript",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "arrow-parens": "off"
+      }
+    }
+  ]
+}
