@@ -89,3 +89,18 @@ export function getSeedToLocationMapping(
   // console.log(`Seed ${seed} -> Location ${location}`);
   return location;
 }
+
+export function getMinimumLocation(
+  seedStart: number,
+  seedRangeLength: number,
+  mappings: IAlmanac["mappings"]
+): number {
+  let minLocation = Infinity;
+
+  for (let seed = seedStart; seed < seedStart + seedRangeLength; seed++) {
+    const location = getSeedToLocationMapping(seed, mappings);
+    minLocation = Math.min(minLocation, location);
+  }
+
+  return minLocation;
+}

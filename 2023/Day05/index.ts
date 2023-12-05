@@ -6,5 +6,7 @@ const rawInputs = getInputLines(path.join(__dirname, `./input.txt`));
 
 const { step1, step2 } = new Solutions();
 
-step1(rawInputs);
-step2(rawInputs);
+(async () => {
+  await step1(rawInputs);
+  await step2(rawInputs);
+})();

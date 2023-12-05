@@ -7,9 +7,9 @@ export function timeExecution(
 ): void {
   const originalMethod = descriptor.value;
 
-  descriptor.value = function (...args: any[]): Promise<any> {
+  descriptor.value = async function (...args: any[]): Promise<any> {
     const start = performance.now();
-    const result = originalMethod.apply(this, args);
+    const result = await originalMethod.apply(this, args);
     const end = performance.now();
     const duration = end - start;
 

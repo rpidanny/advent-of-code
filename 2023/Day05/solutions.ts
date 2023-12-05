@@ -1,3 +1,4 @@
+import { Worker } from "worker_threads";
 import { parseInput, getSeedToLocationMapping } from "./helpers";
 import { timeExecution } from "../utils/timings";
 
@@ -19,7 +20,7 @@ export class Solutions {
 
   // Part 2: lowest location number from seed range
   @timeExecution
-  step2(inputs: string[]) {
+  async step2(inputs: string[]) {
     const { seeds, mappings } = parseInput(inputs);
 
     const chunks: number[][] = [];
@@ -27,15 +28,23 @@ export class Solutions {
       chunks.push([seeds[i], seeds[i + 1]]);
     }
 
-    const minLocations = chunks.map(([seedStart, seedRangeLength]) => {
-      let localMin = Infinity;
-      for (let seed = seedStart; seed < seedStart + seedRangeLength; seed++) {
-        const location = getSeedToLocationMapping(seed, mappings);
-        localMin = Math.min(localMin, location);
+    const tasks = chunks.map(
+      ([seedStart, seedRangeLength]): Promise<number> => {
+        return new Promise((resolve, reject) => {
+          const worker = new Worker("./Day05/worker.js", {
+            workerData: { seedStart, seedRangeLength, mappings },
+          });
+          worker.on("message", resolve);
+          worker.on("error", reject);
+          worker.on("exit", (code) => {
+            if (code !== 0)
+              reject(new Error(`Worker stopped with exit code ${code}`));
+          });
+        });
       }
+    );
 
-      return localMin;
-    });
+    const minLocations = await Promise.all<number>(tasks);
 
     return Math.min(...minLocations);
   }

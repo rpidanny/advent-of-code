@@ -6,22 +6,20 @@ jest.mock("pretty-ms", () => jest.fn((ms) => `${ms} ms`));
 class TestClass {
   @timeExecution
   testMethod(): string {
-    for (let i = 0; i < 1000000000; i++) {
-      // do nothing
-    }
+    new Promise((resolve) => setTimeout(resolve, 1000));
     return "mockResult";
   }
 }
 
 describe("timeExecution decorator", () => {
-  it("should measure execution time correctly", () => {
+  it("should measure execution time correctly", async () => {
     const instance = new TestClass();
     const testMethodSpy = jest.spyOn(instance, "testMethod");
     const consoleLogSpy = jest.spyOn(console, "log");
 
     consoleLogSpy.mockImplementation(() => {});
 
-    const result = instance.testMethod();
+    const result = await instance.testMethod();
 
     expect(testMethodSpy).toHaveBeenCalled();
     expect(result).toBe("mockResult");
