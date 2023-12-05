@@ -21,8 +21,7 @@ describe("Solutions: Day 5", () => {
       expect(part1(input)).toEqual(196167384);
     });
 
-    // This test is skipped because it takes a long time to run
-    test.skip("Part 2", async () => {
+    test("Part 2", async () => {
       await expect(part2(input)).resolves.toEqual(125742456);
     });
   });

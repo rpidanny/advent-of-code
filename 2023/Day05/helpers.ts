@@ -95,11 +95,28 @@ export function getMinimumLocation(
   seedRangeLength: number,
   mappings: IAlmanac["mappings"],
 ): number {
+  const windowSize = 10000;
   let minLocation = Infinity;
 
-  for (let seed = seedStart; seed < seedStart + seedRangeLength; seed++) {
-    const location = getSeedToLocationMapping(seed, mappings);
-    minLocation = Math.min(minLocation, location);
+  let lp = seedStart;
+  let rp = Math.min(seedStart + windowSize, seedStart + seedRangeLength - 1);
+
+  while (rp < seedStart + seedRangeLength) {
+    const lpLocation = getSeedToLocationMapping(lp, mappings);
+    const rpLocation = getSeedToLocationMapping(rp, mappings);
+
+    minLocation = Math.min(minLocation, lpLocation, rpLocation);
+
+    // we only need to check the window if there is change in the window mapping
+    if (Math.abs(rpLocation - lpLocation) !== windowSize) {
+      for (let seed = lp; seed < rp; seed++) {
+        const location = getSeedToLocationMapping(seed, mappings);
+        minLocation = Math.min(minLocation, location);
+      }
+    }
+
+    lp = rp;
+    rp = Math.min(rp + windowSize, seedStart + seedRangeLength);
   }
 
   return minLocation;
