@@ -13,8 +13,6 @@ export function timeExecution(
     const end = performance.now();
     const duration = end - start;
 
-    if (process.env.CI === "true") return result;
-
     console.log(
       `${propertyKey}: ${result}  - (executed in ${prettyMilliseconds(
         duration
