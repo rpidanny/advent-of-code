@@ -1,7 +1,7 @@
 import { findFirstInt } from "./helpers";
 
 // Part 1;
-export function step1(inputs: string[]) {
+export function part1(inputs: string[]) {
   let sum = 0;
 
   for (const line of inputs) {
@@ -12,7 +12,7 @@ export function step1(inputs: string[]) {
 }
 
 // Part 2:
-export function step2(inputs: string[]) {
+export function part2(inputs: string[]) {
   let sum = 0;
 
   for (const line of inputs) {

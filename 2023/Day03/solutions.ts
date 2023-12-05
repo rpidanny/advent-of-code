@@ -1,7 +1,7 @@
 import { findAdjacentNumbers } from "./helpers";
 
 // Part 1: Sum of part Numbers
-export function step1(inputs: string[]) {
+export function part1(inputs: string[]) {
   let sum = 0;
   for (let r = 0; r < inputs.length; r++) {
     for (let c = 0; c < inputs[r].length; c++) {
@@ -19,7 +19,7 @@ export function step1(inputs: string[]) {
 }
 
 // Part 2: Gear Ratio
-export function step2(inputs: string[]) {
+export function part2(inputs: string[]) {
   let sumOfGearRatio = 0;
   for (let r = 0; r < inputs.length; r++) {
     for (let c = 0; c < inputs[r].length; c++) {

@@ -1,7 +1,7 @@
 import {} from "./helpers";
 
 // Part 1;
-export function step1(inputs: string[]): number {
+export function part1(inputs: string[]): number {
   const maxBallCount: Record<string, number> = {
     red: 12,
     green: 13,
@@ -36,7 +36,7 @@ export function step1(inputs: string[]): number {
 }
 
 // Part 2:
-export function step2(inputs: string[]): number {
+export function part2(inputs: string[]): number {
   let sumPower = 0;
 
   for (const game of inputs) {

@@ -6,7 +6,7 @@ import {
 } from "./helpers";
 
 // Part 1: Total Points
-export function step1(inputs: string[]) {
+export function part1(inputs: string[]) {
   let totalPoints = 0;
 
   for (const input of inputs) {
@@ -21,7 +21,7 @@ export function step1(inputs: string[]) {
 }
 
 // Part 2: Total Scratchcards
-export function step2(inputs: string[]) {
+export function part2(inputs: string[]) {
   let totalScratchcards = 0;
 
   const cardsMap = getCardsMap(inputs);

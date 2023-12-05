@@ -1,28 +1,28 @@
 import path from "path";
 
 import { getInputLines } from "../utils/input";
-import { step1, step2 } from "./solutions";
+import { part1, part2 } from "./solutions";
 
 describe("Solutions: Day 2", () => {
   describe("test", () => {
     const input = getInputLines(path.join(__dirname, `./test.input.txt`));
-    test("step 1", () => {
-      expect(step1(input)).toEqual(8);
+    test("part 1", () => {
+      expect(part1(input)).toEqual(8);
     });
 
-    test("step 2", () => {
-      expect(step2(input)).toEqual(2286);
+    test("part 2", () => {
+      expect(part2(input)).toEqual(2286);
     });
   });
 
   describe("real", () => {
     const input = getInputLines(path.join(__dirname, `./input.txt`));
-    test("step 1", () => {
-      expect(step1(input)).toEqual(2447);
+    test("part 1", () => {
+      expect(part1(input)).toEqual(2447);
     });
 
-    test("step 2", () => {
-      expect(step2(input)).toEqual(56322);
+    test("part 2", () => {
+      expect(part2(input)).toEqual(56322);
     });
   });
 });
