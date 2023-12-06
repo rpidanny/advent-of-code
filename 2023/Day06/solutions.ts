@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  calculateDistanceTraveled,
   parsePart1Input,
   parsePart2Input,
+  timeCombinationsToExceedDistance,
 } from "./helpers";
 
 // Part 1: number of ways you can beat the record
@@ -12,15 +12,10 @@ export function part1(inputs: string[]) {
   let result = 1;
 
   for (const { time, distance } of records) {
-    let possibleCount = 0;
-    for (let i = 1; i <= time; i++) {
-      const distanceTraveled = calculateDistanceTraveled(i, time - i);
-      if (distanceTraveled > distance) {
-        possibleCount++;
-      }
-    }
+    const possibleCount = timeCombinationsToExceedDistance(time, distance);
     result *= possibleCount;
   }
+
   return result;
 }
 
@@ -28,13 +23,5 @@ export function part1(inputs: string[]) {
 export function part2(inputs: string[]) {
   const { time, distance } = parsePart2Input(inputs);
 
-  let possibleCount = 0;
-  for (let i = 14; i <= time; i++) {
-    const distanceTraveled = calculateDistanceTraveled(i, time - i);
-    if (distanceTraveled > distance) {
-      possibleCount++;
-    }
-  }
-
-  return possibleCount;
+  return timeCombinationsToExceedDistance(time, distance);
 }
