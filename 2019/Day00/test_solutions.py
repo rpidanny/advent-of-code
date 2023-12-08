@@ -6,6 +6,7 @@ import pytest
 sys.path.append("../")
 
 from solutions import part1, part2
+
 from utils.inputs import get_inputs
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
