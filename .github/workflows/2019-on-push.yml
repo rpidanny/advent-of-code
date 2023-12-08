@@ -32,5 +32,5 @@ jobs:
         working-directory: ./2019
 
       - name: Test
-        run: ./run_tests.sh
+        run: ./run-tests.sh
         working-directory: ./2019
