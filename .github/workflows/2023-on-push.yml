@@ -1,4 +1,4 @@
-name: 2023 - On Push
+name: 2023 - On Push (TS)
 
 on:
   push:

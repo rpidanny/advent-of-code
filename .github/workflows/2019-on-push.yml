@@ -1,0 +1,36 @@
+name: 2019 - On Push (python)
+
+on:
+  push:
+    paths:
+      - 2019/**
+      - .github/workflows/2019*
+env:
+  PYTHON_VERSION: 3.9
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements_dev.txt
+        working-directory: ./2019
+
+      - name: Lint
+        run: |
+          isort --check-only .
+          black --check .
+        working-directory: ./2019
+
+      - name: Test
+        run: pytest
+        working-directory: ./2019

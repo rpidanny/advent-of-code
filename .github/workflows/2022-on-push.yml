@@ -1,4 +1,4 @@
-name: 2022 - On Push
+name: 2022 - On Push (JS)
 
 on:
   push:
