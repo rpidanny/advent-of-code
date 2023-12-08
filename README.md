@@ -6,5 +6,6 @@ My solutions to the puzzles in [Advent of Code](https://adventofcode.com).
 
 ## Years
 
+- [2019](./2019)
 - [2022](./2022)
 - [2023](./2023)
