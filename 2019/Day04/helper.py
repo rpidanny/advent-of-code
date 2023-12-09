@@ -5,9 +5,8 @@ def is_valid_password(password: int, digits_rule: bool) -> bool:
     if len(digits) == len(password):
         return False
 
-    for i in range(1, len(password)):
-        if password[i] < password[i - 1]:
-            return False
+    if any([password[i] < password[i - 1] for i in range(1, len(password))]):
+        return False
 
     if digits_rule and not (2 in [password.count(d) for d in digits]):
         return False
