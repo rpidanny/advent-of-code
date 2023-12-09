@@ -9,5 +9,5 @@
     }
   },
   "isort.args": ["--profile", "black"],
-  "cSpell.words": ["nums"]
+  "cSpell.words": ["nums", "intcode"]
 }
