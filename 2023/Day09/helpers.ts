@@ -6,29 +6,18 @@ export function addNums(nums: number[]): number {
   return nums.reduce((acc, num) => acc + num, 0);
 }
 
-export function generatePyramidFromDifferences(nums: number[]): number[][] {
-  const levels: number[][] = [nums];
-  let levelSum = addNums(nums);
-  while (levelSum) {
-    const currentLevel = levels[levels.length - 1];
-    const nextLevel = currentLevel
-      .slice(1)
-      .map((value, index) => value - currentLevel[index]);
-    levels.push(nextLevel);
-    levelSum = addNums(nextLevel);
-  }
-  return levels;
-}
-
 export function extrapolateForward(nums: number[]): number {
-  const levels = generatePyramidFromDifferences(nums);
-  return levels.reduce((sum, level) => sum + level.pop(), 0);
+  if (addNums(nums) === 0) return 0;
+
+  const nextSeq = nums.slice(1).map((value, index) => value - nums[index]);
+
+  return nums[nums.length - 1] + extrapolateForward(nextSeq);
 }
 
 export function extrapolateBackward(nums: number[]): number {
-  const levels = generatePyramidFromDifferences(nums);
-  return levels.reduceRight(
-    (nextExtrapolation, level) => level[0] - nextExtrapolation,
-    0,
-  );
+  if (addNums(nums) === 0) return 0;
+
+  const nextSeq = nums.slice(1).map((value, index) => value - nums[index]);
+
+  return nums[0] - extrapolateBackward(nextSeq);
 }
