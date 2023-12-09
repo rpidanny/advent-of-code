@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.append("../")
+sys.path.append("utils")
 
 from solutions import part1, part2
 

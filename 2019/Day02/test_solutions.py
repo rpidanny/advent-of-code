@@ -1,7 +1,4 @@
 import os
-import sys
-
-sys.path.append("../")
 
 from helpers import run_program
 from solutions import part1, part2
