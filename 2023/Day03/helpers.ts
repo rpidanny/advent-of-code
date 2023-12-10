@@ -1,4 +1,4 @@
-import { directions } from "../utils/directions";
+import { allDirections } from "../utils/directions";
 
 export function isIndexValid(inputs: string[], row: number, col: number) {
   return (
@@ -44,7 +44,7 @@ export function findAdjacentNumbers(
   const adjacentNumbers: number[] = [];
   const visited = new Set<string>();
 
-  for (const [dr, dc] of directions) {
+  for (const [dr, dc] of Object.values(allDirections)) {
     const r = row + dr;
     const c = col + dc;
 

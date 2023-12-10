@@ -9,5 +9,13 @@
     }
   },
   "isort.args": ["--profile", "black"],
-  "cSpell.words": ["nums", "intcode"]
+  "cSpell.words": [
+    "downleft",
+    "downup",
+    "intcode",
+    "leftright",
+    "leftup",
+    "nums",
+    "rightup"
+  ]
 }
