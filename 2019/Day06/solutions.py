@@ -1,7 +1,4 @@
-from helpers import (
-    get_num_of_orbital_transfers,
-    get_total_orbits,
-)
+from helpers import get_num_of_orbital_transfers, get_total_orbits
 
 
 def part1(inputs: list[str]) -> int:
