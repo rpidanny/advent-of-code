@@ -40,7 +40,7 @@ describe("Solutions: Day 12", () => {
       expect(part2(testInput)).toEqual(525152);
     });
 
-    test.skip("Input", () => {
+    test("Input", () => {
       expect(part2(input)).toEqual(25470469710341);
     });
   });

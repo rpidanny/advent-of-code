@@ -25,35 +25,28 @@ export function getPossibleArrangements(line: string, unfold = false): number {
   ): number {
     const id = `${idx}-${gIdx}-${remaining}`;
     if (memo.has(id)) return memo.get(id);
+
     if (idx === springs.length)
       return gIdx === groups.length && remaining === 0 ? 1 : 0;
     if (gIdx > groups.length) return 0;
 
     let total = 0;
 
-    if (springs[idx] === ".") {
+    if ("?.".indexOf(springs[idx]) > -1) {
       if (remaining === 0) {
         if (gIdx < groups.length) {
           total += numOfPossibleArrangements(idx + 1, gIdx + 1, groups[gIdx]);
         }
         total += numOfPossibleArrangements(idx + 1, gIdx, 0);
       }
-    } else if (springs[idx] === "#") {
-      if (remaining > 0) {
-        total += numOfPossibleArrangements(idx + 1, gIdx, remaining - 1);
-      }
-    } else {
-      if (remaining === 0) {
-        if (gIdx < groups.length) {
-          total += numOfPossibleArrangements(idx + 1, gIdx + 1, groups[gIdx]);
-        }
-        total += numOfPossibleArrangements(idx + 1, gIdx, 0);
-      }
+    }
 
+    if ("?#".indexOf(springs[idx]) > -1) {
       if (remaining > 0) {
         total += numOfPossibleArrangements(idx + 1, gIdx, remaining - 1);
       }
     }
+
     memo.set(id, total);
 
     return total;
