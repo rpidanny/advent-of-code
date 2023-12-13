@@ -41,9 +41,9 @@ class ProgramState:
 
 class IntCode:
     def __init__(self, mem: list[int], ip: int, inputs: list[int] = []) -> None:
-        self.mem = mem
-        self.ip = ip
-        self.inputs = inputs
+        self.__mem = mem
+        self.__ip = ip
+        self.__inputs = inputs
 
     def run(
         self,
@@ -74,59 +74,64 @@ class IntCode:
             else:
                 raise Exception(f"Unknown opcode: {op_code}")
 
-            self.ip += op_code.num_params() + 1
+            self.__ip += op_code.num_params() + 1
 
     def __get_next_instruction(self) -> Tuple[OpCode, int, int, int]:
-        instr = str(self.mem[self.ip]).zfill(5)
+        instr = str(self.__mem[self.__ip]).zfill(5)
         op_code = OpCode(int(instr[-2:]))
         m_3, m_2, m_1 = map(int, instr[:3])
         return op_code, m_1, m_2, m_3
 
     def __get_val(self, addr: int, mode: int) -> int:
-        return self.mem[addr] if mode else self.mem[self.mem[addr]]
+        return self.__mem[addr] if mode else self.__mem[self.__mem[addr]]
+
+    def __set_val(self, addr: int, val: int) -> None:
+        self.__mem[self.__mem[addr]] = val
 
     def __add(self, m_1: int, m_2: int) -> None:
-        self.mem[self.mem[self.ip + 3]] = self.__get_val(
-            self.ip + 1, m_1
-        ) + self.__get_val(self.ip + 2, m_2)
+        sum = self.__get_val(self.__ip + 1, m_1) + self.__get_val(self.__ip + 2, m_2)
+        self.__set_val(self.__ip + 3, sum)
 
     def __mul(self, m_1: int, m_2: int) -> None:
-        self.mem[self.mem[self.ip + 3]] = self.__get_val(
-            self.ip + 1, m_1
-        ) * self.__get_val(self.ip + 2, m_2)
+        prod = self.__get_val(self.__ip + 1, m_1) * self.__get_val(self.__ip + 2, m_2)
+        self.__set_val(self.__ip + 3, prod)
 
     def __input(self) -> None:
-        self.mem[self.mem[self.ip + 1]] = self.inputs.pop(0)
+        self.__set_val(self.__ip + 1, self.__inputs.pop(0))
 
     def __output(self, op_code: OpCode, m_1: int) -> int:
-        io_op = self.__get_val(self.ip + 1, m_1)
-        return ProgramState(self.ip + op_code.num_params() + 1, self.mem, io_op, False)
+        io_op = self.__get_val(self.__ip + 1, m_1)
+        return ProgramState(
+            self.__ip + op_code.num_params() + 1, self.__mem, io_op, False
+        )
 
     def __jump_if_true(self, m_1: int, m_2: int) -> bool:
-        if self.__get_val(self.ip + 1, m_1) > 0:
-            self.ip = self.__get_val(self.ip + 2, m_2)
+        if self.__get_val(self.__ip + 1, m_1) > 0:
+            self.__ip = self.__get_val(self.__ip + 2, m_2)
             return True
         return False
 
     def __jump_if_false(self, m_1: int, m_2: int) -> bool:
-        if self.__get_val(self.ip + 1, m_1) == 0:
-            self.ip = self.__get_val(self.ip + 2, m_2)
+        if self.__get_val(self.__ip + 1, m_1) == 0:
+            self.__ip = self.__get_val(self.__ip + 2, m_2)
             return True
         return False
 
     def __less_than(self, m_1: int, m_2: int) -> None:
-        self.mem[self.mem[self.ip + 3]] = (
+        val = (
             1
-            if self.__get_val(self.ip + 1, m_1) < self.__get_val(self.ip + 2, m_2)
+            if self.__get_val(self.__ip + 1, m_1) < self.__get_val(self.__ip + 2, m_2)
             else 0
         )
+        self.__set_val(self.__ip + 3, val)
 
     def __equals(self, m_1: int, m_2: int) -> None:
-        self.mem[self.mem[self.ip + 3]] = (
+        val = (
             1
-            if self.__get_val(self.ip + 1, m_1) == self.__get_val(self.ip + 2, m_2)
+            if self.__get_val(self.__ip + 1, m_1) == self.__get_val(self.__ip + 2, m_2)
             else 0
         )
+        self.__set_val(self.__ip + 3, val)
 
     def __halt(self) -> None:
-        return ProgramState(self.ip, self.mem, 0, True)
+        return ProgramState(self.__ip, self.__mem, 0, True)
