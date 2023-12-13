@@ -10,7 +10,6 @@ current_dir = os.path.dirname(os.path.realpath(__file__))
 input = get_inputs(f"{current_dir}/input.txt")
 
 
-@pytest.mark.skip(reason="completed")
 class TestPart1:
     def test_with_test_data_1(self):
         assert part1(["3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0"]) == 43210
@@ -45,7 +44,14 @@ class TestPart2:
             )
             == 139629729
         )
+        assert (
+            part2(
+                [
+                    "3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10"
+                ]
+            )
+            == 18216
+        )
 
-    @pytest.mark.skip(reason="not implemented")
     def test_with_real_data(self):
-        assert part2(input) == 2
+        assert part2(input) == 79846026
