@@ -1,8 +1,11 @@
-import sys
+from typing import Tuple
 
-sys.path.append("utils")
 
-from intcode import parse_instruction
+def parse_instruction(instr: int) -> Tuple[int, int, int, int]:
+    instr = str(instr).zfill(5)
+    op_code = int(instr[-2:])
+    m_3, m_2, m_1 = map(int, instr[:3])
+    return m_3, m_2, m_1, op_code
 
 
 def run_program(
