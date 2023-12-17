@@ -4,7 +4,7 @@ import { getInputLines } from "../utils/input";
 import { calculateHash } from "./helpers";
 import { part1, part2 } from "./solutions";
 
-describe("Solutions: Day 0", () => {
+describe("Solutions: Day 15", () => {
   const testInput = getInputLines(path.join(__dirname, `./test.input.txt`));
   const input = getInputLines(path.join(__dirname, `./input.txt`));
 
