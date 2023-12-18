@@ -7,14 +7,22 @@ export const BOTTOM_LEFT: [number, number] = [-1, -1];
 export const TOP_LEFT: [number, number] = [-1, 1];
 export const BOTTOM_RIGHT: [number, number] = [1, -1];
 
-export const basicDirections: Record<string, [number, number]> = {
+export type BasicDirection = "up" | "down" | "left" | "right";
+export type AllDirection =
+  | BasicDirection
+  | "topRight"
+  | "bottomLeft"
+  | "topLeft"
+  | "bottomRight";
+
+export const basicDirections: Record<BasicDirection, [number, number]> = {
   up: UP,
   down: DOWN,
   left: LEFT,
   right: RIGHT,
 };
 
-export const allDirections: Record<string, [number, number]> = {
+export const allDirections: Record<AllDirection, [number, number]> = {
   ...basicDirections,
   topRight: TOP_RIGHT,
   bottomLeft: BOTTOM_LEFT,

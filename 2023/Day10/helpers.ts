@@ -1,4 +1,11 @@
-import { basicDirections, DOWN, LEFT, RIGHT, UP } from "../utils/directions";
+import {
+  BasicDirection,
+  basicDirections,
+  DOWN,
+  LEFT,
+  RIGHT,
+  UP,
+} from "../utils/directions";
 
 const pipeDirections: Record<string, number[][]> = {
   F: [DOWN, RIGHT],
@@ -74,7 +81,7 @@ function getSourcePipe(
 ): string | undefined {
   const neighborDirs = Object.keys(basicDirections)
     .filter((dir) => {
-      const [dx, dy] = basicDirections[dir];
+      const [dx, dy] = basicDirections[dir as BasicDirection];
       const [newX, newY] = [x + dx, y + dy];
 
       return (
