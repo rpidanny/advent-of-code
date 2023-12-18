@@ -1,6 +1,7 @@
 import {
   getAreaOfPolygon,
   getInnerAreaOfPolygon,
+  getOuterAreaOfPolygon,
   getPerimeterOfPolygon,
 } from "./polygon";
 
@@ -241,6 +242,93 @@ describe("Polygon Utils", () => {
       ];
       const innerArea = getInnerAreaOfPolygon(points);
       expect(innerArea).toBe(24);
+    });
+  });
+
+  describe("getOuterAreaOfPolygon", () => {
+    it("should return the correct outer area for a triangle", () => {
+      const points: [number, number][] = [
+        [0, 0],
+        [0, 4],
+        [3, 0],
+        [0, 0],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(14);
+    });
+
+    it("should return the correct outer area for a rectangle", () => {
+      const points: [number, number][] = [
+        [0, 0],
+        [0, 4],
+        [3, 4],
+        [3, 0],
+        [0, 0],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(20);
+    });
+
+    it("should return the correct outer area for a concave polygon", () => {
+      const points: [number, number][] = [
+        [0, 0],
+        [0, 4],
+        [2, 2],
+        [3, 4],
+        [3, 0],
+        [0, 0],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(19);
+    });
+
+    it("should return the correct outer area for a simple polygon", () => {
+      const points: [number, number][] = [
+        [2, 7],
+        [10, 1],
+        [8, 6],
+        [11, 7],
+        [7, 10],
+        [2, 7],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(53);
+    });
+
+    it("should return the correct outer area for a complex polygon", () => {
+      const points: [number, number][] = [
+        [0, 0],
+        [0, 4],
+        [2, 2],
+        [3, 4],
+        [3, 0],
+        [1, 1],
+        [0, 0],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(18.5);
+    });
+
+    it("should return the correct outer area for a complex polygon 2", () => {
+      const points: [number, number][] = [
+        [0, 0],
+        [6, 0],
+        [6, -5],
+        [4, -5],
+        [4, -7],
+        [6, -7],
+        [6, -9],
+        [1, -9],
+        [1, -7],
+        [0, -7],
+        [0, -5],
+        [2, -5],
+        [2, -2],
+        [0, -2],
+        [0, 0],
+      ];
+      const outerArea = getOuterAreaOfPolygon(points);
+      expect(outerArea).toBe(62);
     });
   });
 });
