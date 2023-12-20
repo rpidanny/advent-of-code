@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graph Visualization</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      svg {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .node {
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+
+      .link {
+        fill: none;
+        stroke: #888;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Your graph data
+      var relationships = [
+        "tx -> dx",
+        "nx -> fn, rn",
+        "nr -> cj, mh",
+        "nk -> jt, vk",
+        "mv -> fk, rn",
+        "pz -> kt, pg, mb, vr, hp, jp, tx",
+        "jt -> fb, zb, jq, sv, lp",
+        "vp -> lp, jt",
+        "qs -> gf",
+        "lj -> jt, dt",
+        "jh -> mh",
+        "xc -> nx",
+        "hx -> xb",
+        "kd -> pz, pp",
+        "jq -> jt, qt",
+        "lp -> jm",
+        "ph -> mb, pz",
+        "sv -> gf",
+        "ff -> xc",
+        "th -> mh, hx",
+        "kt -> ct",
+        "ct -> kd, pz",
+        "mh -> bc, qs, hx, xb, nv",
+        "pg -> gf",
+        "fn -> kn",
+        "sk -> hr",
+        "nv -> mh, th",
+        "dx -> pz, ph",
+        "broadcaster -> bx, jq, nv, jp",
+        "dt -> jt, zb",
+        "fx -> sk, rn",
+        "rv -> rn",
+        "gv -> mh, nr",
+        "fk -> rn, rv",
+        "cj -> mh, vh",
+        "xk -> jt, nk",
+        "vh -> mh, jh",
+        "zb -> fb",
+        "mb -> jc",
+        "kn -> rn, mv",
+        "jc -> pz, kt",
+        "sp -> gf",
+        "hp -> tx",
+        "jf -> bc, mh",
+        "fb -> vp",
+        "xm -> mh, gv",
+        "jm -> jt, xk",
+        "vr -> hp",
+        "hr -> ff",
+        "jp -> pz, vr",
+        "rn -> fn, hr, bx, ff, xc, sp, sk",
+        "pp -> pz",
+        "gf -> rx",
+        "xb -> jf",
+        "bx -> rn, fx",
+        "bc -> xm",
+        "qt -> lj, jt",
+        "vk -> jt",
+      ];
+
+      // Create a directed graph
+      var graph = {
+        nodes: [],
+        links: [],
+      };
+
+      // Add nodes and edges to the graph
+      relationships.forEach(function (rel) {
+        var [source, destinations] = rel.split(" -> ");
+        destinations = destinations.split(", ");
+
+        graph.nodes.push({ id: source });
+
+        destinations.forEach(function (dest) {
+          graph.nodes.push({ id: dest });
+          graph.links.push({ source: source, target: dest });
+        });
+      });
+
+      // Create the SVG container
+      var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .call(d3.zoom().scaleExtent([0.1, 5]).on("zoom", zoomed))
+        .append("g");
+
+      // Create the force simulation
+      var simulation = d3
+        .forceSimulation()
+        .force(
+          "link",
+          d3.forceLink().id(function (d) {
+            return d.id;
+          }),
+        )
+        .force("charge", d3.forceManyBody().strength(-100))
+        .force(
+          "center",
+          d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2),
+        );
+
+      // Add links
+      var link = svg
+        .append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter()
+        .append("line")
+        .attr("class", "link")
+        .attr("marker-end", "url(#arrow)");
+
+      // Add nodes
+      var node = svg
+        .append("g")
+        .attr("class", "nodes")
+        .selectAll("circle")
+        .data(graph.nodes)
+        .enter()
+        .append("circle")
+        .attr("class", "node")
+        .attr("r", 20)
+        .attr("fill", "skyblue")
+        .call(
+          d3
+            .drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended),
+        );
+
+      // Add labels to nodes
+      var label = svg
+        .append("g")
+        .attr("class", "labels")
+        .selectAll("text")
+        .data(graph.nodes)
+        .enter()
+        .append("text")
+        .attr("class", "label")
+        .text(function (d) {
+          return d.id;
+        })
+        .attr("x", 22)
+        .attr("y", -12);
+
+      // Add arrow marker
+      svg
+        .append("defs")
+        .append("marker")
+        .attr("id", "arrow")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 28)
+        .attr("refY", 0)
+        .attr("markerWidth", 8)
+        .attr("markerHeight", 8)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M0,-5L10,0L0,5");
+
+      // Update the simulation with the data
+      simulation.nodes(graph.nodes).on("tick", ticked);
+
+      simulation.force("link").links(graph.links);
+
+      function ticked() {
+        link
+          .attr("x1", function (d) {
+            return d.source.x;
+          })
+          .attr("y1", function (d) {
+            return d.source.y;
+          })
+          .attr("x2", function (d) {
+            return d.target.x;
+          })
+          .attr("y2", function (d) {
+            return d.target.y;
+          });
+
+        node
+          .attr("cx", function (d) {
+            return d.x;
+          })
+          .attr("cy", function (d) {
+            return d.y;
+          });
+
+        label
+          .attr("x", function (d) {
+            return d.x;
+          })
+          .attr("y", function (d) {
+            return d.y;
+          });
+      }
+
+      function zoomed() {
+        svg.attr("transform", d3.event.transform);
+      }
+
+      function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
+
+      function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        // d.fx = null;
+        // d.fy = null;
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
+    </script>
+  </body>
+</html>
