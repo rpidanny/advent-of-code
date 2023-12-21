@@ -9,7 +9,11 @@ export function printGrid(
     process.stdout.write(`${row.map(mapper).join(" ")}\n`);
   }
   if (delay) {
-    const start = Date.now();
-    while (Date.now() - start < delay) {}
+    sleep(delay);
   }
+}
+
+export function sleep(ms: number) {
+  const start = Date.now();
+  while (Date.now() - start < ms) {}
 }
