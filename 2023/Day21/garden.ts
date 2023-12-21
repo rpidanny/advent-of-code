@@ -59,19 +59,18 @@ export class Garden {
     let queue: [number, number][] = [[this.startX, this.startY]];
 
     let stepCount = 0;
-    const xSamples: number[] = [];
-    const ySamples: number[] = [];
+
+    const samples: [number, number][] = [];
 
     const canInterpolate = this.isQualifyingSample(maxStep);
 
-    while (xSamples.length < 3 || !canInterpolate) {
+    while (samples.length < 3 || !canInterpolate) {
       const levelSize = queue.length;
 
       if (stepCount === maxStep) return levelSize;
 
       if (this.isQualifyingSample(stepCount)) {
-        xSamples.push(stepCount);
-        ySamples.push(levelSize);
+        samples.push([stepCount, levelSize]);
       }
 
       const visited = new Set<string>();
@@ -98,6 +97,6 @@ export class Garden {
       queue = nextQueue;
     }
 
-    return Math.floor(new Lagrange(xSamples, ySamples).interpolate(maxStep));
+    return Math.floor(new Lagrange(samples).interpolate(maxStep));
   }
 }
