@@ -20,16 +20,9 @@ export class Garden {
     [this.startX, this.startY] = this.getStartingPosition();
   }
 
+  // the starting position is always the middle of the grid based on the input
   private getStartingPosition(): [number, number] {
     return [this.maxX / 2, this.maxY / 2];
-  }
-
-  public mapToVirtualGrid([x, y]: [number, number]): [number, number] {
-    const mod = (n: number, max: number) =>
-      ((n % (max + 1)) + max + 1) % (max + 1);
-    const xMod = mod(x, this.maxX);
-    const yMod = mod(y, this.maxY);
-    return [xMod, yMod];
   }
 
   private printVirtualGrid(multiplier: number) {
@@ -51,8 +44,19 @@ export class Garden {
     }
   }
 
+  // the infinite grid is complete in `width * n + (width /2 )` steps
+  // so only steps that are on the edge of the grid are qualifying samples
   private isQualifyingSample(step: number) {
     return step % (this.maxX + 1) === this.midX;
+  }
+
+  // the virtual grid is infinite, so we need to map the coordinates to the grid
+  public mapToVirtualGrid([x, y]: [number, number]): [number, number] {
+    const mod = (n: number, max: number) =>
+      ((n % (max + 1)) + max + 1) % (max + 1);
+    const xMod = mod(x, this.maxX);
+    const yMod = mod(y, this.maxY);
+    return [xMod, yMod];
   }
 
   public getTotalPossiblePlotVisits(maxStep: number) {
@@ -62,20 +66,27 @@ export class Garden {
 
     const samples: [number, number][] = [];
 
+    // check if we can interpolate with the current samples
+    // if not we brute force until the max step is reached
     const canInterpolate = this.isQualifyingSample(maxStep);
 
+    // 3 samples are enough to interpolate for a second degree polynomial
     while (samples.length < 3 || !canInterpolate) {
       const levelSize = queue.length;
 
       if (stepCount === maxStep) return levelSize;
 
+      // only add samples that are on the edge of the grid
       if (this.isQualifyingSample(stepCount)) {
         samples.push([stepCount, levelSize]);
       }
 
       const visited = new Set<string>();
+
+      // array.shift() is O(n) so we use a new queue instead and just iterate over it in O(1)
       const nextQueue: [number, number][] = [];
 
+      // BFS with sequential iteration over the queue instead of queue.shift()
       for (const [x, y] of queue) {
         for (const [dx, dy] of this.directions) {
           const [newX, newY] = [x + dx, y + dy];
