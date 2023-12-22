@@ -20,7 +20,7 @@ endif
 test: # Run tests 
 ifndef day
 	@echo "Running all tests for 2019"
-	@for day in $(DAYS); do \
+	@for day in $(shell ls -d */); do \
 		echo "----------------------------------------------------------------------"; \
     echo "$(GREEN)Running tests for $$day...$(NC)"; \
 		pytest -v $$day || exit 1; \
