@@ -1,4 +1,4 @@
-name: 2023 - On Push (TS)
+name: 2023 - Tests (TS)
 
 on:
   push:
@@ -7,12 +7,12 @@ on:
       - .github/workflows/2023*
 env:
   NODE_VERSION: 18.x
+  YEAR: 2022
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -21,13 +21,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: ./2023/package-lock.json
+          cache-dependency-path: ./${{ env.YEAR }}/package-lock.json
 
       - run: npm ci
-        working-directory: ./2023
+        working-directory: ./${{ env.YEAR }}
 
       - run: npm run lint
-        working-directory: ./2023
+        working-directory: ./${{ env.YEAR }}
 
       - run: npm test
-        working-directory: ./2023
+        working-directory: ./${{ env.YEAR }}

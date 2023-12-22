@@ -1,4 +1,4 @@
-name: 2019 - On Push (python)
+name: 2019 - Tests (python)
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - .github/workflows/2019*
 env:
   PYTHON_VERSION: 3.9
+  YEAR: 2019
 
 jobs:
   test:
@@ -23,14 +24,14 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt -r requirements_dev.txt
-        working-directory: ./2019
+        working-directory: ./${{ env.YEAR }}
 
       - name: Lint
         run: |
           isort --check-only .
           black --check .
-        working-directory: ./2019
+        working-directory: ./${{ env.YEAR }}
 
       - name: Test
         run: ./run-tests.sh
-        working-directory: ./2019
+        working-directory: ./${{ env.YEAR }}
