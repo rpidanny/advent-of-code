@@ -9,21 +9,21 @@ describe("Solutions: Day 19", () => {
 
   describe("Part 1", () => {
     test("Test Input", () => {
-      expect(part1(testInput)).toEqual(19114);
+      expect(part1(testInput)).toEqual(19_114);
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(432427);
+      expect(part1(input)).toEqual(432_427);
     });
   });
 
   describe("Part 2", () => {
     test("Test Input", () => {
-      expect(part2(testInput)).toEqual(167409079868000);
+      expect(part2(testInput)).toEqual(167_409_079_868_000);
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(143760172569135);
+      expect(part2(input)).toEqual(143_760_172_569_135);
     });
   });
 });

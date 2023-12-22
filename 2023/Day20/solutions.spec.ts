@@ -11,21 +11,21 @@ describe("Solutions: Day 20", () => {
 
   describe("Part 1: Product of High and Low Pulse counts", () => {
     test("Test Input", () => {
-      expect(part1(testInput)).toEqual(32000000);
+      expect(part1(testInput)).toEqual(32_000_000);
     });
 
     test("Test Input 2", () => {
-      expect(part1(testInput2)).toEqual(11687500);
+      expect(part1(testInput2)).toEqual(11_687_500);
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(886347020);
+      expect(part1(input)).toEqual(886_347_020);
     });
   });
 
   describe("Part 2: Number of Button presses until low pulse to rx", () => {
     test("Input", () => {
-      expect(part2(input)).toEqual(233283622908263);
+      expect(part2(input)).toEqual(233_283_622_908_263);
     });
   });
 });

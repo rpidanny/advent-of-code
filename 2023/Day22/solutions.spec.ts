@@ -23,7 +23,7 @@ describe("Solutions: Day 22", () => {
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(75358);
+      expect(part2(input)).toEqual(75_358);
     });
   });
 });

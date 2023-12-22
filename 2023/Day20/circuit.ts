@@ -111,7 +111,7 @@ export class Circuit {
     return { high, low };
   }
 
-  public getProductOfHighLowCount(iterations = 1000): number {
+  public getProductOfHighLowCount(iterations = 1_000): number {
     let highCount = 0;
     let lowCount = 0;
 

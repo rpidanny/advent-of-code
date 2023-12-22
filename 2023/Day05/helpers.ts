@@ -95,7 +95,7 @@ export function getMinimumLocation(
   seedRangeLength: number,
   mappings: IAlmanac["mappings"],
 ): number {
-  const windowSize = 10000;
+  const windowSize = 10_000;
   let minLocation = Infinity;
 
   let lp = seedStart;

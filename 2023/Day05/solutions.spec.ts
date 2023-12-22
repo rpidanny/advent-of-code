@@ -18,11 +18,11 @@ describe("Solutions: Day 5", () => {
   describe("real", () => {
     const input = getInputLines(path.join(__dirname, `./input.txt`));
     test("Part 1", () => {
-      expect(part1(input)).toEqual(196167384);
+      expect(part1(input)).toEqual(196_167_384);
     });
 
     test("Part 2", async () => {
-      await expect(part2(input)).resolves.toEqual(125742456);
+      await expect(part2(input)).resolves.toEqual(125_742_456);
     });
   });
 });

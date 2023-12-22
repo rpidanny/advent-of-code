@@ -13,17 +13,17 @@ describe("Solutions: Day 18", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(47139);
+      expect(part1(input)).toEqual(47_139);
     });
   });
 
   describe("Part 2", () => {
     test("Test Input", () => {
-      expect(part2(testInput)).toEqual(952408144115);
+      expect(part2(testInput)).toEqual(952_408_144_115);
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(173152345887206);
+      expect(part2(input)).toEqual(173_152_345_887_206);
     });
   });
 });

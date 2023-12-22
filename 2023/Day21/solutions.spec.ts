@@ -14,7 +14,7 @@ describe("Solutions: Day 21", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(3562);
+      expect(part1(input)).toEqual(3_562);
     });
   });
 
@@ -34,15 +34,15 @@ describe("Solutions: Day 21", () => {
     });
 
     test("Test Input 2", () => {
-      expect(part2(testInput, 50)).toEqual(1594);
+      expect(part2(testInput, 50)).toEqual(1_594);
     });
 
     test("Test Input 2", () => {
-      expect(part2(testInput, 100)).toEqual(6536);
+      expect(part2(testInput, 100)).toEqual(6_536);
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(592723929260582);
+      expect(part2(input)).toEqual(592_723_929_260_582);
     });
   });
 });

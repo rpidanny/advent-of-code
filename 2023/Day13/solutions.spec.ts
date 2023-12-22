@@ -52,7 +52,7 @@ describe("Solutions: Day 13", () => {
           "#.####.#.#..#.#.#",
           "#.####.#.#..#.#.#",
         ]),
-      ).toEqual(1000);
+      ).toEqual(1_000);
     });
 
     test("Test Input", () => {
@@ -60,7 +60,7 @@ describe("Solutions: Day 13", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(31877);
+      expect(part1(input)).toEqual(31_877);
     });
   });
 
@@ -87,7 +87,7 @@ describe("Solutions: Day 13", () => {
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(42996);
+      expect(part2(input)).toEqual(42_996);
     });
   });
 });

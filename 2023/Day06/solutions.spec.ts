@@ -11,18 +11,18 @@ describe("Solutions: Day 6", () => {
     });
 
     test("Part 2", () => {
-      expect(part2(input)).toEqual(71503);
+      expect(part2(input)).toEqual(71_503);
     });
   });
 
   describe("real", () => {
     const input = getInputLines(path.join(__dirname, `./input.txt`));
     test("Part 1", () => {
-      expect(part1(input)).toEqual(1312850);
+      expect(part1(input)).toEqual(1_312_850);
     });
 
     test("Part 2", () => {
-      expect(part2(input)).toEqual(36749103);
+      expect(part2(input)).toEqual(36_749_103);
     });
   });
 });

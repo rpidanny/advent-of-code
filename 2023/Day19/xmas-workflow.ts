@@ -120,10 +120,10 @@ export class XmasWorkflow {
   public getTotalPossibleAcceptedParts(
     workflowName: string,
     range: Map<Variable, [number, number]> = new Map([
-      ["x", [1, 4000]],
-      ["m", [1, 4000]],
-      ["a", [1, 4000]],
-      ["s", [1, 4000]],
+      ["x", [1, 4_000]],
+      ["m", [1, 4_000]],
+      ["a", [1, 4_000]],
+      ["s", [1, 4_000]],
     ]),
   ): number {
     if (workflowName === "R") return 0;
