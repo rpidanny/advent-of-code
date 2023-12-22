@@ -40,3 +40,14 @@ else
 	@black --check ./Day$(day)
 	@isort --check-only ./Day$(day)
 endif
+
+format: # Format code
+ifndef day
+	@echo "Running formatter for 2019"
+	@black .
+	@isort .
+else
+	@echo "$(GREEN)Running formatter for Day$(day)...$(NC)"
+	@black ./Day$(day)
+	@isort ./Day$(day)
+endif

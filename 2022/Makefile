@@ -26,3 +26,12 @@ else
 	@echo "Running linter for Day$(day)"
 	@npm run lint -- ./Day$(day)
 endif
+
+format: # Format code
+ifndef day
+	@echo "Running formatter for 2022"
+	@npm run lint:fix
+else
+	@echo "Running formatter for Day$(day)"
+	@npm run lint:fix -- ./Day$(day)
+endif

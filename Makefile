@@ -36,3 +36,16 @@ else
 	@echo "Running linter for $(year)/Day$(day)"
 	@$(MAKE) -C $(year) lint day=$(day)
 endif
+
+format: # Format code
+ifndef year
+	@echo "Formatting all years"
+	@for year in $(YEARS); do \
+		$(MAKE) -C $$year format; \
+	done
+else ifndef day
+	@$(MAKE) -C $(year) format
+else
+	@echo "Formatting $(year)/Day$(day)"
+	@$(MAKE) -C $(year) format day=$(day)
+endif
