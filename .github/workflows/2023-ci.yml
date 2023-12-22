@@ -26,8 +26,8 @@ jobs:
       - run: npm ci
         working-directory: ./${{ env.YEAR }}
 
-      - run: npm run lint
+      - run: make lint
         working-directory: ./${{ env.YEAR }}
 
-      - run: npm test
+      - run: make test
         working-directory: ./${{ env.YEAR }}

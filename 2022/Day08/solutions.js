@@ -1,12 +1,8 @@
-const {
-  getCellId,
-  printVisibleTrees,
-  calculateScenicScoreOfCell,
-} = require("./helpers");
+const { getCellId, calculateScenicScoreOfCell } = require('./helpers');
 
 // Part 1;
 function step1(inputs) {
-  let visibleTrees = new Set();
+  const visibleTrees = new Set();
 
   // Left / Right Sweep
   for (let row = 0; row < inputs.length; row++) {
@@ -56,7 +52,7 @@ function step2(inputs) {
     for (let col = 0; col < inputs[row].length; col++) {
       maxScenicScore = Math.max(
         maxScenicScore,
-        calculateScenicScoreOfCell(inputs, row, col)
+        calculateScenicScoreOfCell(inputs, row, col),
       );
     }
   }

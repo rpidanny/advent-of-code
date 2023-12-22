@@ -2,7 +2,7 @@ const {
   getGames,
   getTotalScoreFromGamePlay,
   getTotalScoreFromGameConditions,
-} = require("./helpers");
+} = require('./helpers');
 
 const step1 = (inputs) => {
   const games = getGames(inputs);

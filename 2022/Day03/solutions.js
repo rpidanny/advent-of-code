@@ -2,7 +2,7 @@ const {
   getPriority,
   getCommonItemInRucksackCompartments,
   getCommonItemsInRucksacks,
-} = require("./helpers");
+} = require('./helpers');
 
 // Part 1;
 function step1(rucksacks) {

@@ -29,12 +29,11 @@ class Heap {
     let pointer = i;
 
     while (true) {
-      let parentIdx = this.getParent(pointer);
+      const parentIdx = this.getParent(pointer);
       if (
         pointer <= 0 ||
         this.comparator(this.arr[pointer], this.arr[parentIdx])
-      )
-        break;
+      ) break;
 
       this.swap(pointer, parentIdx);
       pointer = parentIdx;

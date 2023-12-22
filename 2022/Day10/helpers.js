@@ -1,5 +1,5 @@
 const tick = (state) => {
-  let startOfCycleNum = 20;
+  const startOfCycleNum = 20;
 
   if ((state.cycleNum - startOfCycleNum) % 40 === 0) {
     state.totalSignalStrength += state.cycleNum * state.registers.x;
@@ -13,7 +13,7 @@ const updateFrameBuffer = (state) => {
   const row = Math.floor(state.cycleNum / 40);
 
   if (col >= state.registers.x - 1 && col <= state.registers.x + 1) {
-    state.frameBuffer[row][col] = "#";
+    state.frameBuffer[row][col] = '#';
   }
 
   state.cycleNum++;

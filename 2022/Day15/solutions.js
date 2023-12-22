@@ -1,10 +1,12 @@
-const { parseInput } = require("./helpers");
-const { Scanner } = require("./Scanner");
-const { Grid } = require("./Grid");
+const {parseInput} = require('./helpers');
+const {Scanner} = require('./Scanner');
+const {Grid} = require('./Grid');
 
 // Part 1;
 function step1(inputs, row = 10, devMode = false) {
-  const { sensors, minX, maxX, minY, maxY } = parseInput(inputs);
+  const {
+    sensors, minX, maxX, minY, maxY,
+  } = parseInput(inputs);
 
   const scanner = new Scanner(sensors, minX, maxX, minY, maxY);
 
@@ -18,7 +20,9 @@ function step1(inputs, row = 10, devMode = false) {
 
 // Part 2:
 function step2(inputs, devMode = false) {
-  const { sensors, minX, maxX, minY, maxY } = parseInput(inputs);
+  const {
+    sensors, minX, maxX, minY, maxY,
+  } = parseInput(inputs);
 
   const scanner = new Scanner(sensors, minX, maxX, minY, maxY);
 

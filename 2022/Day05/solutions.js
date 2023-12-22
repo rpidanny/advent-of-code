@@ -3,7 +3,7 @@ const {
   moveCratesLIFO,
   moveCratesFIFO,
   getTopOfStacks,
-} = require("./helpers");
+} = require('./helpers');
 
 // Part 1;
 function step1(inputs) {
@@ -11,7 +11,7 @@ function step1(inputs) {
 
   // Extract stacks from input
   const rawStacks = [];
-  while (inputs[currentPointer][0] !== "m") {
+  while (inputs[currentPointer][0] !== 'm') {
     rawStacks.push(inputs[currentPointer]);
     currentPointer++;
   }
@@ -20,7 +20,7 @@ function step1(inputs) {
 
   // Move crates based on input actions
   for (let i = currentPointer; i < inputs.length; i++) {
-    const [, count, , src, , dest] = inputs[i].split(" ");
+    const [, count, , src, , dest] = inputs[i].split(' ');
     moveCratesLIFO(stacks, parseInt(src), parseInt(dest), parseInt(count));
   }
 
@@ -34,7 +34,7 @@ function step2(inputs) {
 
   // Extract stacks from input
   const rawStacks = [];
-  while (inputs[currentPointer][0] !== "m") {
+  while (inputs[currentPointer][0] !== 'm') {
     rawStacks.push(inputs[currentPointer]);
     currentPointer++;
   }
@@ -43,7 +43,7 @@ function step2(inputs) {
 
   // Move crates based on input actions
   for (let i = currentPointer; i < inputs.length; i++) {
-    const [, count, , src, , dest] = inputs[i].split(" ");
+    const [, count, , src, , dest] = inputs[i].split(' ');
     moveCratesFIFO(stacks, parseInt(src), parseInt(dest), parseInt(count));
   }
 

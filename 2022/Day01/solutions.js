@@ -1,11 +1,9 @@
 const {
   getTotalCaloriesPerElf,
   getCaloriesSumOfTopKElves,
-} = require("./helpers");
+} = require('./helpers');
 
-const step1 = (inputs) => {
-  return getTotalCaloriesPerElf(inputs)[0];
-};
+const step1 = (inputs) => getTotalCaloriesPerElf(inputs)[0];
 
 const step2 = (inputs) => {
   const totalCaloriesPerElves = getTotalCaloriesPerElf(inputs);
@@ -15,5 +13,5 @@ const step2 = (inputs) => {
 
 module.exports = {
   step1,
-  step2
-}
+  step2,
+};

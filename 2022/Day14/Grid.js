@@ -2,7 +2,7 @@ class Grid {
   constructor(maxRow, maxCol, rowOffset, colOffset) {
     this.rowOffset = rowOffset;
     this.colOffset = colOffset;
-    this.grid = new Array(maxRow).fill().map(() => new Array(maxCol).fill(" "));
+    this.grid = new Array(maxRow).fill().map(() => new Array(maxCol).fill(' '));
   }
 
   getValue(r, c) {
@@ -29,9 +29,9 @@ class Grid {
   print(includeIdx = false) {
     for (let i = 0; i < this.grid.length; i++) {
       if (includeIdx) {
-        console.log(`${i}: ${this.grid[i].join("")}`);
+        console.log(`${i}: ${this.grid[i].join('')}`);
       } else {
-        console.log(this.grid[i].join(""));
+        console.log(this.grid[i].join(''));
       }
     }
   }

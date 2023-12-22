@@ -1,4 +1,4 @@
-const {} = require("./helpers");
+const {} = require('./helpers');
 
 // Part 1;
 function step1(inputs) {

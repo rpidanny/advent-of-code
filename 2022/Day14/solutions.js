@@ -1,5 +1,5 @@
-const { SandSimulation } = require("./SandSimulation.js");
-const { Scanner } = require("./Scanner.js");
+const {SandSimulation} = require('./SandSimulation.js');
+const {Scanner} = require('./Scanner.js');
 
 // Part 1;
 async function step1(inputs) {

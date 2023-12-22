@@ -77,7 +77,7 @@ class RopeSimulation {
 
   async runSimulation(inputs) {
     for (const input of inputs) {
-      const [direction, steps] = input.split(" ");
+      const [direction, steps] = input.split(' ');
       for (let i = 0; i < steps; i++) {
         this.tick(direction);
 
@@ -87,9 +87,7 @@ class RopeSimulation {
   }
 
   getUniqueTailPositions() {
-    return Array.from(this.tailPositions).map((p) =>
-      p.split(",").map((d) => parseInt(d))
-    );
+    return Array.from(this.tailPositions).map((p) => p.split(',').map((d) => parseInt(d)));
   }
 }
 

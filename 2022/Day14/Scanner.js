@@ -1,10 +1,14 @@
-const { Grid } = require("./Grid");
+const {Grid} = require('./Grid');
 
 class Scanner {
   rowMax = 0;
+
   colMax = 0;
+
   colMin = Infinity;
+
   maxCol = 0;
+
   maxRow = 0;
 
   constructor(inputs, scanFloor = false) {
@@ -13,15 +17,15 @@ class Scanner {
     this.scans = this.parseRawInputs(inputs);
     this.updateDimensions();
 
-    const maxColSize = scanFloor
-      ? Math.max(this.maxCol * 4, this.maxRow * 4)
-      : this.maxCol * 2;
+    const maxColSize = scanFloor ?
+      Math.max(this.maxCol * 4, this.maxRow * 4) :
+      this.maxCol * 2;
 
     this.grid = new Grid(
-      this.maxRow + 5,
-      maxColSize,
-      0,
-      this.colMin - ((maxColSize >> 1) >> 1)
+        this.maxRow + 5,
+        maxColSize,
+        0,
+        this.colMin - ((maxColSize >> 1) >> 1),
     );
 
     this.updateGridWithStones();
@@ -33,8 +37,8 @@ class Scanner {
     const scans = [];
     for (const line of inputs) {
       const points = line
-        .split(" -> ")
-        .map((point) => point.split(",").map((p) => parseInt(p)));
+          .split(' -> ')
+          .map((point) => point.split(',').map((p) => parseInt(p)));
       scans.push(points);
     }
     return scans;
@@ -65,7 +69,7 @@ class Scanner {
             row <= Math.max(point[1], nextPoint[1]);
             row++
           ) {
-            this.grid.setValue(row, point[0], "#");
+            this.grid.setValue(row, point[0], '#');
           }
         } else {
           for (
@@ -73,7 +77,7 @@ class Scanner {
             col <= Math.max(point[0], nextPoint[0]);
             col++
           ) {
-            this.grid.setValue(point[1], col, "#");
+            this.grid.setValue(point[1], col, '#');
           }
         }
       }
@@ -81,7 +85,7 @@ class Scanner {
   }
 
   updateGridWithFloor() {
-    this.grid.setRowValues(this.rowMax + 2, "#");
+    this.grid.setRowValues(this.rowMax + 2, '#');
   }
 
   getGrid() {

@@ -7,9 +7,9 @@ class Operation {
   execute(num) {
     const operator = this.val || num;
 
-    if (this.type === "+") {
+    if (this.type === '+') {
       return num + operator;
-    } else if (this.type === "*") {
+    } if (this.type === '*') {
       return num * operator;
     }
   }

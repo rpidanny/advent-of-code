@@ -43,7 +43,7 @@ class Scanner {
   }
 
   isIsolated(x, y) {
-    for (const { sensor, distance } of this.sensors) {
+    for (const {sensor, distance} of this.sensors) {
       const d1 = this.calculateDistance(sensor, [x, y]);
       if (d1 <= distance) return false;
     }
@@ -62,7 +62,7 @@ class Scanner {
       this.occupiedPositions.add(this.getCoordinateId(...sensor));
       this.occupiedPositions.add(this.getCoordinateId(...beacon));
 
-      this.sensors.push({ sensor, distance: distance, beacon });
+      this.sensors.push({sensor, distance, beacon});
     }
   }
 
@@ -95,8 +95,7 @@ class Scanner {
             this.isWithinSearchArea(x, y) &&
             this.isIsolated(x, y) &&
             this.isSurrounded(x, y)
-          )
-            return [x, y];
+          ) return [x, y];
         }
       }
     }

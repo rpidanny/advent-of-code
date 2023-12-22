@@ -1,27 +1,27 @@
-const path = require("path");
+const path = require('path');
 
 const addItemToDirTree = (dirTree, cwd, item, name) => {
-  if (cwd === "/") {
+  if (cwd === '/') {
     if (!dirTree[cwd]) {
       dirTree[cwd] = {
-        type: "directory",
+        type: 'directory',
         size: 0,
         content: {},
       };
     }
 
-    dirTree[cwd]["content"][name] = item;
+    dirTree[cwd].content[name] = item;
     return;
   }
 
-  const dirs = cwd.split("/");
+  const dirs = cwd.split('/');
 
-  let currentPointer = dirTree["/"]["content"];
+  let currentPointer = dirTree['/'].content;
 
   for (const dir of dirs) {
-    if (dir === "") continue;
+    if (dir === '') continue;
 
-    currentPointer = currentPointer[dir]["content"];
+    currentPointer = currentPointer[dir].content;
   }
 
   currentPointer[name] = item;
@@ -31,7 +31,7 @@ const populateDirSizes = (dirTree) => {
   let dirSize = 0;
 
   for (const [name, child] of Object.entries(dirTree.content)) {
-    if (child.type === "file") {
+    if (child.type === 'file') {
       dirSize += child.size;
     } else {
       dirSize += populateDirSizes(dirTree.content[name]);
@@ -57,27 +57,27 @@ const generateDirTree = (inputs) => {
 
   let cwd;
   for (const input of inputs) {
-    const isCmd = input[0] === "$";
+    const isCmd = input[0] === '$';
     if (isCmd) {
-      const [, cmd, arg] = input.split(" ");
-      if (cmd === "cd") {
+      const [, cmd, arg] = input.split(' ');
+      if (cmd === 'cd') {
         cwd = getCwd(cwd, arg);
       }
     } else {
-      const isDir = input[0] === "d"; // beginning char of 'dir'
+      const isDir = input[0] === 'd'; // beginning char of 'dir'
 
       if (isDir) {
-        const [, folderName] = input.split(" ");
+        const [, folderName] = input.split(' ');
         const item = {
-          type: "directory",
+          type: 'directory',
           size: 0,
           content: {},
         };
         addItemToDirTree(dirTree, cwd, item, folderName);
       } else {
-        const [size, fileName] = input.split(" ");
+        const [size, fileName] = input.split(' ');
         const item = {
-          type: "file",
+          type: 'file',
           size: parseInt(size),
         };
         addItemToDirTree(dirTree, cwd, item, fileName);
@@ -86,7 +86,7 @@ const generateDirTree = (inputs) => {
   }
 
   // Run DFS to update folder size recursively
-  populateDirSizes(dirTree["/"]);
+  populateDirSizes(dirTree['/']);
 
   return dirTree;
 };
@@ -95,7 +95,7 @@ const getSumOfDirsSmallerThan = (dirTree, maxFolderSize) => {
   let dirSize = 0;
 
   for (const [name, child] of Object.entries(dirTree.content)) {
-    if (child.type === "directory") {
+    if (child.type === 'directory') {
       if (child.size <= maxFolderSize) {
         dirSize += child.size;
       }
@@ -111,11 +111,11 @@ const findSmallestDirLargerThan = (dirTree, minThreshold) => {
   let minSize = Infinity;
 
   for (const [name, child] of Object.entries(dirTree.content)) {
-    if (child.type === "directory" && child.size >= minThreshold) {
+    if (child.type === 'directory' && child.size >= minThreshold) {
       minSize = Math.min(
-        minSize,
-        child.size,
-        findSmallestDirLargerThan(dirTree.content[name], minThreshold)
+          minSize,
+          child.size,
+          findSmallestDirLargerThan(dirTree.content[name], minThreshold),
       );
     }
   }

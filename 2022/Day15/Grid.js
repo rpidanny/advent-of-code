@@ -1,10 +1,15 @@
 class Grid {
-  sensorChar = "S";
-  beaconChar = "B";
-  emptyChar = ".";
-  perimeterChar = "x";
-  sensorAreaChar = "#";
-  searchAreaChar = " ";
+  sensorChar = 'S';
+
+  beaconChar = 'B';
+
+  emptyChar = '.';
+
+  perimeterChar = 'x';
+
+  sensorAreaChar = '#';
+
+  searchAreaChar = ' ';
 
   constructor(sensors, minX, maxX, minY, maxY) {
     this.sensors = sensors;
@@ -21,15 +26,15 @@ class Grid {
     this.yOffset = minY - ((this.ySize >> 1) >> 1);
 
     this.grid = new Array(this.ySize)
-      .fill()
-      .map(() => new Array(this.xSize).fill(this.emptyChar));
+        .fill()
+        .map(() => new Array(this.xSize).fill(this.emptyChar));
 
     this.updateGrid();
   }
 
   padInteger(num, size = 4) {
     num = num.toString();
-    while (num.length < size) num = " " + num;
+    while (num.length < size) num = ` ${num}`;
     return num;
   }
 
@@ -69,7 +74,7 @@ class Grid {
 
   getExteriorPoints() {
     let points = [];
-    for (const { sensor, distance } of this.sensors) {
+    for (const {sensor, distance} of this.sensors) {
       points = points.concat(this.getManhattanPoints(...sensor, distance + 1));
     }
     return points;
@@ -80,7 +85,7 @@ class Grid {
       for (let x = 0; x < this.grid[y].length; x++) {
         if (this.grid[y][x] !== this.emptyChar) continue;
 
-        for (const { sensor, distance } of this.sensors) {
+        for (const {sensor, distance} of this.sensors) {
           const d1 = this.calculateDistance(this.getAbsCoordinate(...sensor), [
             x,
             y,
@@ -96,7 +101,7 @@ class Grid {
   }
 
   updateSensors() {
-    for (const { sensor, beacon } of this.sensors) {
+    for (const {sensor, beacon} of this.sensors) {
       this.setValue(...sensor, this.sensorChar);
       this.setValue(...beacon, this.beaconChar);
     }
@@ -118,18 +123,18 @@ class Grid {
 
   print() {
     console.log(
-      `X: ${this.xOffset} - ${this.grid[0].length - 1 + this.xOffset}`
+        `X: ${this.xOffset} - ${this.grid[0].length - 1 + this.xOffset}`,
     );
 
     for (let y = 0; y < this.grid.length; y++) {
       const row = this.grid[y]
-        .map((r, x) => {
-          if (this.isWithinSearchArea(x, y) && r === this.sensorAreaChar) {
-            return this.searchAreaChar;
-          }
-          return r;
-        })
-        .join("");
+          .map((r, x) => {
+            if (this.isWithinSearchArea(x, y) && r === this.sensorAreaChar) {
+              return this.searchAreaChar;
+            }
+            return r;
+          })
+          .join('');
 
       console.log(`${this.padInteger(y + this.yOffset)} - ${row}`);
     }

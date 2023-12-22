@@ -3,7 +3,7 @@ const getTotalCaloriesPerElf = (foodItems) => {
 
   let calories = 0;
   for (const food of foodItems) {
-    if (food === "") {
+    if (food === '') {
       totalCalories.push(calories);
       calories = 0;
     } else {

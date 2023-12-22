@@ -1,4 +1,4 @@
-const { getIndexOfEndOfFirstUniqueWindow } = require("./helpers");
+const {getIndexOfEndOfFirstUniqueWindow} = require('./helpers');
 
 // Part 1;
 function step1([dataStream]) {

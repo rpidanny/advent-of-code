@@ -1,5 +1,3 @@
-DAYS:=$(shell seq -w 1 25)
-
 init: # Init folder for a given [day]
 ifndef day
 	@echo "[day] must be defined"
@@ -10,4 +8,23 @@ else
 	@cp Day00/* Day$(day)
 	@grep -rl "Day 0" Day$(day)/solutions.spec.ts | xargs sed -i "" "s/Day 0/Day $(day)/g"
 	@echo "Day$(day) created! happy coding!"
+endif
+
+test: # Run tests 
+ifndef day
+	@echo "Running all tests for 2023"
+	@npm run test
+else
+	@echo "Running tests for Day$(day)"
+	@npm run test -- ./Day$(day)
+endif
+
+
+lint: # Run linter
+ifndef day
+	@echo "Running linter for 2023"
+	@npm run lint
+else
+	@echo "Running linter for Day$(day)"
+	@npm run lint -- ./Day$(day)
 endif
