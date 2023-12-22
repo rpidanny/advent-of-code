@@ -1,4 +1,4 @@
-name: 2019 - Tests (python)
+name: 2019 - Tests (py)
 
 on:
   push:
