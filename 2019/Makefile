@@ -51,3 +51,24 @@ else
 	@black ./Day$(day)
 	@isort ./Day$(day)
 endif
+
+run: # Run code
+ifndef day
+	@echo "Running code for 2019"
+	@for day in $(DAYS); do \
+		echo "----------------------------------------------------------------------"; \
+		echo "$(GREEN)Running code for $$day...$(NC)"; \
+		python3 $$day/main.py || exit 1; \
+	done;
+else
+	@echo "$(GREEN)Running code for Day$(day)...$(NC)"
+	@python3 Day$(day)/main.py || exit 1
+endif
+
+run-dev: # Run code in dev mode
+ifndef day
+	@echo "$(RED)Only single day can be in in dev mode$(NC)"
+else
+	@echo "$(GREEN)Running code for Day$(day)...$(NC)"
+	@nodemon Day$(day)/main.py || exit 1
+endif

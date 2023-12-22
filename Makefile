@@ -49,3 +49,27 @@ else
 	@echo "Formatting $(year)/Day$(day)"
 	@$(MAKE) -C $(year) format day=$(day)
 endif
+
+run: # Run code
+ifndef year
+	@echo "Running code for all years"
+	@for year in $(YEARS); do \
+		$(MAKE) -C $$year run; \
+	done
+else ifndef day
+	@echo "Running code for $(year)"
+	@$(MAKE) -C $(year) run
+else
+	@echo "Running code for $(year)/Day$(day)"
+	@$(MAKE) -C $(year) run day=$(day)
+endif
+
+run-dev: # Run code in dev mode
+ifndef year
+	@echo "$(RED)Only single year can be in in dev mode$(NC)"
+else ifndef day
+	@echo "$(RED)Only single day can be in in dev mode$(NC)"
+else
+	@echo "Running code for $(year)/Day$(day)"
+	@$(MAKE) -C $(year) run-dev day=$(day)
+endif

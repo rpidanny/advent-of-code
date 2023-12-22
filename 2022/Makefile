@@ -1,3 +1,9 @@
+GREEN:=\033[0;32m
+NC:=\033[0m
+RED:=\033[0;31m
+
+DAYS:=$(shell ls -d */ | sed 's:/$$::' | grep -E '^Day[0-9]{2}' | sort -u)
+
 init: # Init folder for a given [day]
 ifndef day
 	@echo "[day] must be defined"
@@ -34,4 +40,25 @@ ifndef day
 else
 	@echo "Running formatter for Day$(day)"
 	@npm run lint:fix -- ./Day$(day)
+endif
+
+run: # Run code
+ifndef day
+	@echo "Running code for 2022"
+	@for day in $(DAYS); do \
+		echo "----------------------------------------------------------------------"; \
+		echo "$(GREEN)Running code for $$day...$(NC)"; \
+		node $$day/index.js; \
+	done;
+else
+	@echo "Running code for Day$(day)"
+	@node ./Day$(day)/index.js
+endif
+
+run-dev: # Run code in dev mode
+ifndef day
+	@echo "$(RED)Only single day can be in in dev mode$(NC)"
+else
+	@echo "Running code for Day$(day)"
+	@nodemon ./Day$(day)/index.js
 endif
