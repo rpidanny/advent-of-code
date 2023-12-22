@@ -1,4 +1,4 @@
-name: 2023 - Tests (TS)
+name: 2023 - Tests (ts)
 
 on:
   push:

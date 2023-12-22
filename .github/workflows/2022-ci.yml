@@ -1,4 +1,4 @@
-name: 2022 - Tests (JS)
+name: 2022 - Tests (js)
 
 on:
   push:
