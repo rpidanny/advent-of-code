@@ -2,7 +2,7 @@ import { PathFinder } from "./path-finder";
 
 // Part 1:
 export function part1(inputs: string[]) {
-  const pf = new PathFinder(inputs);
+  const pf = new PathFinder(inputs, process.env.VISUALIZE === "true");
 
   return pf.lengthOfLongestPath();
 }

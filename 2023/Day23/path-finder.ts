@@ -1,4 +1,7 @@
+import chalk from "chalk";
+
 import { Direction, DOWN, LEFT, RIGHT, UP } from "../utils/directions";
+import { printGrid } from "../utils/output";
 
 export class PathFinder {
   grid: string[][];
@@ -17,13 +20,15 @@ export class PathFinder {
     string,
     [string, number][]
   >();
+  visualize: boolean;
 
-  constructor(grid: string[]) {
+  constructor(grid: string[], visualize = false) {
     this.grid = grid.map((row) => row.split(""));
     this.start = this.getStartingPoint();
     this.end = this.getEndPoint();
     this.startNode = this.start.join(",");
     this.endNode = this.end.join(",");
+    this.visualize = visualize;
   }
 
   /**
@@ -140,6 +145,26 @@ export class PathFinder {
   }
 
   /**
+   * Visualize the current path
+   *
+   * @param visited set of visited nodes (i.e. path)
+   *
+   * */
+  private visualizePath(visited: Set<string>) {
+    const points = Array.from(visited).map((key) => key.split(",").map(Number));
+
+    const tempGrid = this.grid.map((row) =>
+      row.map((char) => chalk.bold.gray(char)),
+    );
+
+    for (const [x, y] of points) {
+      tempGrid[y][x] = chalk.cyan.bold("0");
+    }
+
+    printGrid(tempGrid, (char) => char, 60);
+  }
+
+  /**
    * Backtracking through the grid
    *
    * @param x x-coordinate of the current node
@@ -155,7 +180,10 @@ export class PathFinder {
     length = 0,
     visited = new Set<string>(),
   ): number {
-    if (x === this.end[0] && y === this.end[1]) return length;
+    if (x === this.end[0] && y === this.end[1]) {
+      if (this.visualize) this.visualizePath(visited);
+      return length;
+    }
 
     const key = `${x},${y}`;
 
