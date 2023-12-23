@@ -4,6 +4,14 @@ RED:=\033[0;31m
 
 DAYS:=$(shell ls -d */ | sed 's:/$$::' | grep -E '^Day[0-9]{2}' | sort -u)
 
+OS := $(shell uname)
+
+ifeq ($(OS),Darwin)
+SED := sed -i "" 
+else
+SED := sed -i
+endif
+
 init: # Init folder for a given [day]
 ifndef day
 	@echo "[day] must be defined"
@@ -12,7 +20,7 @@ else ifneq ("$(wildcard Day$(day))", "")
 else
 	@mkdir -p Day$(day)
 	@cp Day00/* Day$(day)
-	@grep -rl "Day 0" Day$(day)/solutions.spec.ts | xargs sed -i "" "s/Day 0/Day $(day)/g"
+	@@grep -rl "Day 0" Day$(day)/solutions.spec.ts | xargs $(SED) 's/Day 0/Day $(day)/g'
 	@echo "Day$(day) created! happy coding!"
 endif
 
