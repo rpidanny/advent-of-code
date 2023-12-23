@@ -14,7 +14,7 @@ describe("Solutions: Day 14", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(108792);
+      expect(part1(input)).toEqual(108_792);
     });
   });
 
@@ -55,7 +55,7 @@ describe("Solutions: Day 14", () => {
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(99118);
+      expect(part2(input)).toEqual(99_118);
     });
   });
 });

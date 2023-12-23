@@ -1,14 +1,14 @@
-export interface IItem {
+export interface IItem<T> {
   weight: number;
-  data?: any;
+  data?: T;
 }
 
 export interface IComparator {
   (val1: number, val2: number): number;
 }
 
-export class Heap {
-  items: IItem[];
+export class Heap<T> {
+  items: IItem<T>[];
   comparator: IComparator;
 
   constructor(comparator: IComparator) {
@@ -78,13 +78,13 @@ export class Heap {
     return this.items.length;
   }
 
-  public add(item: IItem) {
+  public add(item: IItem<T>) {
     this.items.push(item);
 
     this.bubbleUp(this.items.length - 1);
   }
 
-  public pop(): IItem | undefined {
+  public pop(): IItem<T> | undefined {
     if (!this.items.length) return;
 
     this.swap(0, this.items.length - 1);

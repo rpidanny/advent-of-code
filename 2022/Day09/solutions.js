@@ -1,5 +1,5 @@
-const { RopeSimulation } = require("./simulation");
-const { Logger } = require("./logger");
+const {RopeSimulation} = require('./simulation');
+const {Logger} = require('./logger');
 
 // Part 1;
 async function step1(inputs) {

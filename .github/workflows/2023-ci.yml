@@ -1,0 +1,33 @@
+name: 2023 - Tests (ts)
+
+on:
+  push:
+    paths:
+      - 2023/**
+      - .github/workflows/2023*
+env:
+  NODE_VERSION: 18.x
+  YEAR: 2023
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: ./${{ env.YEAR }}/package-lock.json
+
+      - run: npm ci
+        working-directory: ./${{ env.YEAR }}
+
+      - run: make lint
+        working-directory: ./${{ env.YEAR }}
+
+      - run: make test
+        working-directory: ./${{ env.YEAR }}

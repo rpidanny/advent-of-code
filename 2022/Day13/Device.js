@@ -32,22 +32,22 @@ class Device {
   // Step 1
   arePacketsOrdered(p1, p2) {
     // Case1: num and num
-    if (typeof p1 === "number" && typeof p2 === "number") {
+    if (typeof p1 === 'number' && typeof p2 === 'number') {
       if (p1 !== p2) return p1 < p2;
     }
 
     // Case2: array and array
-    if (typeof p1 === "object" && typeof p2 === "object") {
+    if (typeof p1 === 'object' && typeof p2 === 'object') {
       return this.compareTwoArrays(p1, p2);
     }
 
     // Case 3: array and number
-    if (typeof p1 === "object" && typeof p2 === "number") {
+    if (typeof p1 === 'object' && typeof p2 === 'number') {
       return this.arePacketsOrdered(p1, [p2]);
     }
 
     // Case 4: number and array
-    if (typeof p1 === "number" && typeof p2 === "object") {
+    if (typeof p1 === 'number' && typeof p2 === 'object') {
       return this.arePacketsOrdered([p1], p2);
     }
   }

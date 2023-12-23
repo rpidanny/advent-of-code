@@ -1,16 +1,16 @@
 const getPriority = (char) => {
   let power = 0;
 
-  if (char.charCodeAt() < "a".charCodeAt()) {
-    power = char.charCodeAt() - "A".charCodeAt() + 27;
+  if (char.charCodeAt() < 'a'.charCodeAt()) {
+    power = char.charCodeAt() - 'A'.charCodeAt() + 27;
   } else {
-    power = char.charCodeAt() - "a".charCodeAt() + 1;
+    power = char.charCodeAt() - 'a'.charCodeAt() + 1;
   }
   return power;
 };
 
 const getCommonItemInRucksackCompartments = (rucksack) => {
-  const length = rucksack.length;
+  const {length} = rucksack;
   const m = length >> 1;
 
   const compartment1 = rucksack.substr(0, m);

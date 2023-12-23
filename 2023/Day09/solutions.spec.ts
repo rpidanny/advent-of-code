@@ -13,7 +13,7 @@ describe("Solutions: Day 9", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(2101499000);
+      expect(part1(input)).toEqual(2_101_499_000);
     });
   });
 
@@ -23,7 +23,7 @@ describe("Solutions: Day 9", () => {
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(1089);
+      expect(part2(input)).toEqual(1_089);
     });
   });
 });

@@ -2,12 +2,12 @@ const getCellId = (row, col) => `${row}-${col}`;
 
 const printVisibleTrees = (grid, visibleTrees) => {
   const newArr = new Array(grid.length)
-    .fill()
-    .map(() => new Array(grid[0].length).fill("0"));
+      .fill()
+      .map(() => new Array(grid[0].length).fill('0'));
 
   for (const cell of visibleTrees) {
-    const [row, col] = cell.split("-");
-    newArr[parseInt(row)][parseInt(col)] = "1";
+    const [row, col] = cell.split('-');
+    newArr[parseInt(row)][parseInt(col)] = '1';
   }
 
   for (const row of newArr) {
@@ -15,9 +15,7 @@ const printVisibleTrees = (grid, visibleTrees) => {
   }
 };
 
-const isValidCell = (grid, r, c) => {
-  return r >= 0 && r < grid.length && c >= 0 && c < grid[0].length;
-};
+const isValidCell = (grid, r, c) => r >= 0 && r < grid.length && c >= 0 && c < grid[0].length;
 
 const calculateScenicScoreOfCell = (grid, r, c) => {
   const directions = [

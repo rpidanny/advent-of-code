@@ -24,26 +24,26 @@ class Logger {
   }
 
   drawTailPositions(tailPositions) {
-    console.log(`### Tail Positions ###\n`);
+    console.log('### Tail Positions ###\n');
     const [maxRow, maxCol] = this.gridSize;
 
     const grid = new Array(maxRow)
-      .fill()
-      .map(() => new Array(maxCol).fill("."));
+        .fill()
+        .map(() => new Array(maxCol).fill('.'));
 
     for (const tail of tailPositions) {
       const [r, c] = this.getAbsCoordinate(tail);
 
-      if (this.isValidPoint([r, c])) grid[r][c] = "#";
+      if (this.isValidPoint([r, c])) grid[r][c] = '#';
     }
 
-    grid[this.r0][this.c0] = "s";
+    grid[this.r0][this.c0] = 's';
 
     for (const row of grid) {
-      console.log(row.join(""));
+      console.log(row.join(''));
     }
 
-    console.log("\n");
+    console.log('\n');
   }
 
   async drawKnots(knots, input, step) {
@@ -55,25 +55,24 @@ class Logger {
     const [maxRow, maxCol] = this.gridSize;
 
     const grid = new Array(maxRow)
-      .fill()
-      .map(() => new Array(maxCol).fill("."));
+        .fill()
+        .map(() => new Array(maxCol).fill('.'));
 
     for (let i = 0; i < knots.length; i++) {
       const [r, c] = this.getAbsCoordinate(knots[i]);
 
-      if (this.isValidPoint([r, c]) && grid[r][c] === ".")
-        grid[r][c] = i === 0 ? "H" : i;
+      if (this.isValidPoint([r, c]) && grid[r][c] === '.') grid[r][c] = i === 0 ? 'H' : i;
     }
 
-    grid[this.r0][this.c0] = "s";
+    grid[this.r0][this.c0] = 's';
 
     for (const row of grid) {
-      console.log(row.join(""));
+      console.log(row.join(''));
     }
 
     if (this.level > 1) await this.delay();
 
-    console.log("\n");
+    console.log('\n');
   }
 }
 

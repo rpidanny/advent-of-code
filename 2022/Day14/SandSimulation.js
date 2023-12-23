@@ -1,4 +1,4 @@
-const { delayMs } = require("../utils/delay");
+const {delayMs} = require('../utils/delay');
 
 class SandSimulation {
   directions = [
@@ -12,7 +12,7 @@ class SandSimulation {
   }
 
   isCellEmpty(r, c) {
-    return this.grid.getValue(r, c) === " ";
+    return this.grid.getValue(r, c) === ' ';
   }
 
   hasSandFallenIntoAbyss(r) {
@@ -25,7 +25,7 @@ class SandSimulation {
     let hasSettled = false;
     let cantAddMoreSand = false;
 
-    if (this.grid.getValue(r, c) === "o") {
+    if (this.grid.getValue(r, c) === 'o') {
       return false;
     }
 
@@ -48,7 +48,7 @@ class SandSimulation {
       }
     }
 
-    if (hasSettled) this.grid.setValue(currentPos[1], currentPos[0], "o");
+    if (hasSettled) this.grid.setValue(currentPos[1], currentPos[0], 'o');
 
     return hasSettled && !cantAddMoreSand;
   }

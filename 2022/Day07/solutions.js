@@ -2,7 +2,7 @@ const {
   generateDirTree,
   getSumOfDirsSmallerThan,
   findSmallestDirLargerThan,
-} = require("./helpers");
+} = require('./helpers');
 
 // Part 1;
 function step1(inputs) {
@@ -10,15 +10,15 @@ function step1(inputs) {
 
   const dirTree = generateDirTree(inputs);
 
-  return getSumOfDirsSmallerThan(dirTree["/"], maxDirSize);
+  return getSumOfDirsSmallerThan(dirTree['/'], maxDirSize);
 }
 
-////////////////////////////////////////////////////////////////////////
+// / /////////////////////////////////////////////////////////////////////
 
 // Part 2:
 function step2(inputs) {
   const dirTree = generateDirTree(inputs);
-  const root = dirTree["/"];
+  const root = dirTree['/'];
 
   const totalSizeOnDisk = 70000000;
   const minSizeNeeded = 30000000;

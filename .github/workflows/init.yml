@@ -1,0 +1,24 @@
+name: Init
+
+on:
+  schedule: 
+    - cron: '0 4 1-25 12 *' # Every day from December 1st to December 25th at 4am UTC
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Init day
+        run: make init year=$(date +%Y) day=$(date +%d)
+
+      - uses: fregante/setup-git-user@v2
+
+      - name: Commit folder
+        run: |
+          YEAR=$(date +%Y)
+          DAY=$(date +%d)
+          git add .
+          git commit -m "feat($YEAR): init day $DAY"
+          git push

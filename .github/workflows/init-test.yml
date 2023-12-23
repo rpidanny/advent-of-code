@@ -1,0 +1,26 @@
+name: Init test
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: 'Year number'
+        type: string
+        required: true
+      day:
+        description: 'Day number'
+        type: string
+        required: true
+
+jobs:
+  add-day:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Init day
+        run: make init year=${{ github.event.inputs.year }} day=${{ github.event.inputs.day }} 
+
+      - name: List files
+        run: ls -la
+        working-directory: ./${{ github.event.inputs.year }}/Day${{ github.event.inputs.day }}

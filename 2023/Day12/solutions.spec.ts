@@ -21,7 +21,7 @@ describe("Solutions: Day 12", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(7286);
+      expect(part1(input)).toEqual(7_286);
     });
   });
 
@@ -29,19 +29,19 @@ describe("Solutions: Day 12", () => {
     test("getPossibleArrangements", () => {
       expect(getPossibleArrangements("???.### 1,1,3", true)).toEqual(1);
       expect(getPossibleArrangements(".??..??...?##. 1,1,3", true)).toEqual(
-        16384,
+        16_384,
       );
       expect(
         getPossibleArrangements(".#??#?#???????#???. 1,4,1,2,1,1", true),
-      ).toEqual(35085128);
+      ).toEqual(35_085_128);
     });
 
     test("Test Input", () => {
-      expect(part2(testInput)).toEqual(525152);
+      expect(part2(testInput)).toEqual(525_152);
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(25470469710341);
+      expect(part2(input)).toEqual(25_470_469_710_341);
     });
   });
 });

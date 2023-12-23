@@ -6,6 +6,7 @@ const parseStacks = (rawStacksArr) => {
 
   const maxStackId = parseInt(stackIds[stackIds.length - 2]);
 
+  // eslint-disable-next-line no-array-constructor
   const stacks = new Array(maxStackId + 1).fill().map(() => new Array());
 
   for (const row of rawStacksArr) {
@@ -13,7 +14,7 @@ const parseStacks = (rawStacksArr) => {
     for (let i = 1; i < row.length; i += 4) {
       const crate = row[i];
 
-      if (crate !== " ") {
+      if (crate !== ' ') {
         stacks[stackId].unshift(crate);
       }
       stackId++;
@@ -30,7 +31,7 @@ const moveCratesLIFO = (stacks, src, dest, count) => {
 };
 
 const moveCratesFIFO = (stacks, src, dest, count) => {
-  let cratesToMove = stacks[src].splice(stacks[src].length - count);
+  const cratesToMove = stacks[src].splice(stacks[src].length - count);
 
   for (const crate of cratesToMove) {
     stacks[dest].push(crate);
@@ -45,7 +46,7 @@ const getTopOfStacks = (stacks) => {
     top.push(stack[stack.length - 1]);
   }
 
-  return top.join("");
+  return top.join('');
 };
 
 module.exports = {

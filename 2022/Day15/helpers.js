@@ -7,18 +7,18 @@ const parseInput = (lines) => {
   const sensors = [];
 
   for (const line of lines) {
-    const [sensorPart, beaconPart] = line.split(":");
+    const [sensorPart, beaconPart] = line.split(':');
 
     // sensor part
     const sensor = sensorPart
-      .replace(/Sensor at x=/g, "")
-      .split(", y=")
-      .map((cord) => parseInt(cord));
+        .replace(/Sensor at x=/g, '')
+        .split(', y=')
+        .map((cord) => parseInt(cord));
 
     const beacon = beaconPart
-      .replace(/closest beacon is at x=/g, "")
-      .split(", y=")
-      .map((cord) => parseInt(cord));
+        .replace(/closest beacon is at x=/g, '')
+        .split(', y=')
+        .map((cord) => parseInt(cord));
 
     minX = Math.min(minX, sensor[0], beacon[0]);
     maxX = Math.max(maxX, sensor[0], beacon[0]);
@@ -34,7 +34,7 @@ const parseInput = (lines) => {
     minX,
     maxX,
     minY,
-    maxY
+    maxY,
   };
 };
 

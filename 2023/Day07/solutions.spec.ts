@@ -31,22 +31,22 @@ describe("Solutions: Day 7", () => {
   describe("test", () => {
     const input = getInputLines(path.join(__dirname, `./test.input.txt`));
     test("Part 1", () => {
-      expect(part1(input)).toEqual(6440);
+      expect(part1(input)).toEqual(6_440);
     });
 
     test("Part 2", () => {
-      expect(part2(input)).toEqual(5905);
+      expect(part2(input)).toEqual(5_905);
     });
   });
 
   describe("real", () => {
     const input = getInputLines(path.join(__dirname, `./input.txt`));
     test("Part 1", () => {
-      expect(part1(input)).toEqual(248422077);
+      expect(part1(input)).toEqual(248_422_077);
     });
 
     test("Part 2", () => {
-      expect(part2(input)).toEqual(249817836);
+      expect(part2(input)).toEqual(249_817_836);
     });
   });
 });

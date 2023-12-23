@@ -21,7 +21,7 @@ describe("Solutions: Day 10", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(6886);
+      expect(part1(input)).toEqual(6_886);
     });
   });
 

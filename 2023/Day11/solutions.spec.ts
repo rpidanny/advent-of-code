@@ -61,7 +61,7 @@ describe("Solutions: Day 11", () => {
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(9799681);
+      expect(part1(input)).toEqual(9_799_681);
     });
   });
 
@@ -86,15 +86,15 @@ describe("Solutions: Day 11", () => {
     });
 
     test("Test Input 1", () => {
-      expect(part2(testInput, 10)).toEqual(1030);
+      expect(part2(testInput, 10)).toEqual(1_030);
     });
 
     test("Test Input 1", () => {
-      expect(part2(testInput, 100)).toEqual(8410);
+      expect(part2(testInput, 100)).toEqual(8_410);
     });
 
     test("Input", () => {
-      expect(part2(input, 1_000_000)).toEqual(513171773355);
+      expect(part2(input, 1_000_000)).toEqual(513_171_773_355);
     });
   });
 });

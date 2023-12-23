@@ -1,4 +1,4 @@
-const { Device } = require("./Device");
+const {Device} = require('./Device');
 
 // Part 1;
 function step1(inputs) {

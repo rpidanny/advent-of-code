@@ -3,7 +3,7 @@ const getIndexOfEndOfFirstUniqueWindow = (str, windowSize) => {
   let leftPointer = 0;
   let rightPointer = 0;
 
-  let charSet = new Set();
+  const charSet = new Set();
 
   while (rightPointer < str.length) {
     if (charSet.has(str[rightPointer])) {

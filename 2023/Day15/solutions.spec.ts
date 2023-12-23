@@ -4,7 +4,7 @@ import { getInputLines } from "../utils/input";
 import { calculateHash } from "./helpers";
 import { part1, part2 } from "./solutions";
 
-describe("Solutions: Day 0", () => {
+describe("Solutions: Day 15", () => {
   const testInput = getInputLines(path.join(__dirname, `./test.input.txt`));
   const input = getInputLines(path.join(__dirname, `./input.txt`));
 
@@ -13,11 +13,11 @@ describe("Solutions: Day 0", () => {
       expect(calculateHash("HASH")).toEqual(52);
     });
     test("Test Input", () => {
-      expect(part1(testInput)).toEqual(1320);
+      expect(part1(testInput)).toEqual(1_320);
     });
 
     test("Input", () => {
-      expect(part1(input)).toEqual(503487);
+      expect(part1(input)).toEqual(503_487);
     });
   });
 
@@ -27,7 +27,7 @@ describe("Solutions: Day 0", () => {
     });
 
     test("Input", () => {
-      expect(part2(input)).toEqual(261505);
+      expect(part2(input)).toEqual(261_505);
     });
   });
 });
