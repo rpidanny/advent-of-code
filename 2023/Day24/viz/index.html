@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive 3D Plot with Grids</title>
+    <script src="./data.js"></script>
+    <script type="module">
+      import * as THREE from "https://threejsfundamentals.org/threejs/resources/threejs/r125/build/three.module.js";
+      import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources/threejs/r125/examples/jsm/controls/OrbitControls.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Parse the input data
+        const data = rawData
+          .split("\n")
+          .map((line) => line.split(" @ "))
+          .map(([position, velocity]) => ({
+            position: new THREE.Vector3(
+              ...position
+                .split(", ")
+                .map(Number)
+                .map((n) => n / 1000000000000),
+            ),
+            velocity: new THREE.Vector3(...velocity.split(", ").map(Number)),
+          }));
+
+        // Create scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xeeeeee);
+
+        // Calculate scene size based on the largest coordinate value
+        const maxCoordinate = Math.max(
+          ...data.flatMap(
+            (pointData) => pointData.position.toArray(),
+            (pointData) => pointData.velocity.toArray(),
+          ),
+        );
+
+        console.log(maxCoordinate);
+        const sceneSize = maxCoordinate * 2;
+
+        // Create camera
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          sceneSize * 5,
+        );
+        camera.position.z = sceneSize;
+
+        // Create renderer
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create points and paths
+        const points = new THREE.Group();
+        scene.add(points);
+
+        data.forEach((pointData) => {
+          const geometry = new THREE.SphereGeometry(1);
+          const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+          const sphere = new THREE.Mesh(geometry, material);
+          sphere.position.copy(pointData.position);
+          points.add(sphere);
+
+          // Create initial line segment
+          const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+            pointData.position,
+            pointData.position.clone().add(pointData.velocity),
+          ]);
+          const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3498db });
+          const line = new THREE.Line(lineGeometry, lineMaterial);
+          scene.add(line);
+        });
+
+        // Create axes
+        const axesHelper = new THREE.AxesHelper(sceneSize);
+        scene.add(axesHelper);
+
+        // Create controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.screenSpacePanning = false;
+        controls.maxPolarAngle = Math.PI / 2;
+
+        // Set controls target to the center of the scene
+        controls.target.set(0, 0, 0);
+
+        // Animation
+        const animate = () => {
+          requestAnimationFrame(animate);
+
+          // Update controls
+          controls.update();
+
+          // Update positions based on velocities
+          // points.children.forEach((point, index) => {
+          //   const velocity = data[index].velocity;
+          //   point.position.add(velocity);
+          // });
+
+          renderer.render(scene, camera);
+        };
+
+        animate();
+
+        // Resize handling
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      });
+    </script>
+  </head>
+  <body style="margin: 0"></body>
+</html>
