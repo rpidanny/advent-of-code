@@ -10,6 +10,7 @@
   },
   "isort.args": ["--profile", "black"],
   "cSpell.words": [
+    "astroids",
     "downleft",
     "downup",
     "intcode",
