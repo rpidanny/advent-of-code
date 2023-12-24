@@ -140,7 +140,7 @@ export class Forecast {
    * @returns the position of the hailstone at the time of the collision
    */
   public async getInitialStonePosition(): Promise<Point> {
-    const { Context } = await init();
+    const { Context, em } = await init();
     const z3 = Context("main");
     const solver = new z3.Solver();
 
@@ -175,6 +175,9 @@ export class Forecast {
     const x = Number(`${model.get(xr)}`);
     const y = Number(`${model.get(yr)}`);
     const z = Number(`${model.get(zr)}`);
+
+    // https://github.com/Z3Prover/z3/issues/6701
+    em.PThread.terminateAllThreads();
 
     return new Point(x, y, z);
   }
