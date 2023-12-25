@@ -19,6 +19,7 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
+    "@graph-algorithm/minimum-cut": "^2.0.0",
     "chalk": "^4.1.2",
     "pretty-ms": "^7.0.1",
     "z3-solver": "^4.12.4"
