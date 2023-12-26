@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "Running pre-commit hook"
+
+make lint
+
+exit 0
