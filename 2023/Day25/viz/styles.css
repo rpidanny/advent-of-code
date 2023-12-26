@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: aliceblue;
+}
+
+svg {
+  width: 100vw;
+  height: 100vh;
+}
+
+.node {
+  stroke: #375e97;
+  stroke-width: 2.5px;
+  font-weight: normal;
+  fill: darksalmon;
+}
+
+.link {
+  fill: none;
+  stroke: #888;
+  stroke-width: 1.5px;
+}
+
+.label {
+  text-align: center;
+  font-size: 14px;
+  fill: #000;
+}
