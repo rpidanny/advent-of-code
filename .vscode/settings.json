@@ -11,6 +11,7 @@
   "isort.args": ["--profile", "black"],
   "cSpell.words": [
     "astroids",
+    "capsys",
     "downleft",
     "downup",
     "intcode",
