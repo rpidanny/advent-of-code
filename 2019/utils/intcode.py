@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Dict, Tuple
+from typing import Callable, Dict, Tuple
 
 
 class OpCode(Enum):
@@ -47,10 +47,14 @@ class ProgramState:
 
 class IntCode:
     def __init__(
-        self, mem: Dict[int, int], ip: int = 0, inputs: list[int] = [], rb: int = 0
+        self,
+        mem: Dict[int, int],
+        get_input: Callable[[], int],
+        ip: int = 0,
+        rb: int = 0,
     ) -> None:
         self.__ip = ip
-        self.__inputs = inputs
+        self.__get_input = get_input
         self.__rb = rb  # relative base
         self.__mem = mem
 
@@ -126,7 +130,7 @@ class IntCode:
         self.__set_val(self.__ip + 3, prod, m_3)
 
     def __input(self, m_1: int) -> None:
-        self.__set_val(self.__ip + 1, self.__inputs.pop(0), m_1)
+        self.__set_val(self.__ip + 1, self.__get_input(), m_1)
 
     def __output(self, op_code: OpCode, m_1: int) -> int:
         io_op = self.__get_val(self.__ip + 1, m_1)

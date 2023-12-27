@@ -11,7 +11,10 @@ class Robot:
         self.__dir = (0, 1)
         self.__canvas = defaultdict(int)
         self.__inputs = []
-        self.__intcode = IntCode(prog, 0, self.__inputs)
+        self.__intcode = IntCode(prog, self.__get_input)
+
+    def __get_input(self) -> int:
+        return self.__inputs.pop(0)
 
     def __move(self, direction: int) -> None:
         dx, dy = self.__dir
