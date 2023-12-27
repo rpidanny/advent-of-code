@@ -1,5 +1,5 @@
 import pytest
-from inputs import get_inputs
+from inputs import extract_all_numbers, get_inputs
 
 
 @pytest.fixture
@@ -39,3 +39,22 @@ def test_get_inputs_file_with_whitespace(create_test_file, tmp_path):
     file_with_whitespace.write_text("   Line 1   \n   Line 2   \n   Line 3   ")
     result = get_inputs(file_with_whitespace)
     assert result == ["   Line 1   ", "   Line 2   ", "   Line 3   "]
+
+
+def test_extract_all_numbers():
+    # Test the function to extract all numbers from a string
+    input_string = "abc123def-456ghi789"
+    result = extract_all_numbers(input_string)
+    assert result == ["123", "-456", "789"]
+
+    input_string = "No numbers in this string"
+    result = extract_all_numbers(input_string)
+    assert result == []
+
+    input_string = "Only one number: 42"
+    result = extract_all_numbers(input_string)
+    assert result == ["42"]
+
+    input_string = "Multiple numbers: 1, 2, 3, 4, 5"
+    result = extract_all_numbers(input_string)
+    assert result == ["1", "2", "3", "4", "5"]
