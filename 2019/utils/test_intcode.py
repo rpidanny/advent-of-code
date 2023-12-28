@@ -15,19 +15,21 @@ class TestIntCodeRelativeBase:
     def test_quine(self):
         code = "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99"
 
-        int_code = IntCode(get_program([code]))
+        int_code = IntCode(get_program([code]), lambda: 0)
         outputs = int_code.run_until_halt()
 
         assert outputs == list(map(int, code.split(",")))
 
     def test_output_large_16digit_number(self):
-        int_code = IntCode(get_program(["1102,34915192,34915192,7,4,7,99,0"]))
+        int_code = IntCode(
+            get_program(["1102,34915192,34915192,7,4,7,99,0"]), lambda: 0
+        )
         outputs = int_code.run_until_halt()
 
         assert outputs == [1219070632396864]
 
     def test_output_large_number_from_code(self):
-        int_code = IntCode(get_program(["104,1125899906842624,99"]))
+        int_code = IntCode(get_program(["104,1125899906842624,99"]), lambda: 0)
         outputs = int_code.run_until_halt()
 
         assert outputs == [1125899906842624]

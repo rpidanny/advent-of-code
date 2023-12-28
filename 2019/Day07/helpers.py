@@ -11,7 +11,7 @@ def amplify(prog: list[int], phases: list[int], input: int) -> int:
     for amp in range(len(phases)):
         mem = deepcopy(prog)
         io_ip = [phases[amp], output]
-        state = IntCode(mem, 0, io_ip).run()
+        state = IntCode(mem, lambda: io_ip.pop(0)).run()
         output = state.output
     return output
 
@@ -26,7 +26,7 @@ def amplify_with_feedback(prog: list[int], phases: list[int], input: int) -> int
         for idx, (inputs, mem, ip) in enumerate(zip(inputs_arr, mem_arr, ip_arr)):
             inputs.append(input)
 
-            state = IntCode(mem, ip, inputs).run()
+            state = IntCode(mem, lambda: inputs.pop(0), ip).run()
             ip_arr[idx] = state.ip
 
             if state.halted:
