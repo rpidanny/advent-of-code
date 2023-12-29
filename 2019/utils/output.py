@@ -1,5 +1,8 @@
+import os
 import sys
 import time
+
+from utils.grid import get_min_max_xy
 
 
 def print_grid(grid, mapper=lambda v: str(v), delay=0):
@@ -10,6 +13,17 @@ def print_grid(grid, mapper=lambda v: str(v), delay=0):
         )  # Move the cursor to the beginning of the line
         sys.stdout.write("".join(map(mapper, row)) + "\n")
         sys.stdout.flush()
+
+    if delay:
+        time.sleep(delay)
+
+
+def print_grid_dict(grid, mapper=lambda v: str(v), delay=0):
+    os.system("cls" if os.name == "nt" else "clear")
+    min_x, max_x, min_y, max_y = get_min_max_xy(grid)
+
+    for y in range(min_y, max_y + 1):
+        print("".join(mapper((x, y)) for x in range(min_x, max_x + 1)))
 
     if delay:
         time.sleep(delay)

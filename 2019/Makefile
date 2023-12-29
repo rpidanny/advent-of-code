@@ -13,7 +13,6 @@ else ifneq ("$(wildcard Day$(day))", "")
 else
 	@mkdir -p Day$(day)
 	@cp Day00/* Day$(day)
-	@grep -rl "Day 0" Day$(day)/solutions.spec.ts | xargs sed -i "" "s/Day 0/Day $(day)/g"
 	@echo "Day$(day) created! happy coding!"
 endif
 
