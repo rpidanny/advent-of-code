@@ -5,14 +5,16 @@ import time
 from utils.grid import get_min_max_xy
 
 
-def print_grid(grid, mapper=lambda v: str(v), delay=0):
+def print_grid(grid, mapper=lambda v: str(v), delay=0, padding=False):
+    # os.system("cls" if os.name == "nt" else "clear")
     for i, row in enumerate(grid):
         sys.stdout.write("\033[K")  # Clear the current line
         sys.stdout.write(
             "\033[{};{}H".format(i + 1, 0)
         )  # Move the cursor to the beginning of the line
-        sys.stdout.write("".join(map(mapper, row)) + "\n")
+        sys.stdout.write((" " if padding else "").join(map(mapper, row)) + "\n")
         sys.stdout.flush()
+        # print("".join(map(mapper, row)))
 
     if delay:
         time.sleep(delay)
