@@ -1,0 +1,35 @@
+name: 2024 - Tests (py)
+
+on:
+  push:
+    paths:
+      - 2024/**
+      - .github/workflows/2024*
+env:
+  PYTHON_VERSION: 3.9
+  YEAR: 2024
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements_dev.txt
+        working-directory: ./${{ env.YEAR }}
+
+      - name: Lint
+        run: make lint
+        working-directory: ./${{ env.YEAR }}
+
+      - name: Test
+        run: make test
+        working-directory: ./${{ env.YEAR }}
