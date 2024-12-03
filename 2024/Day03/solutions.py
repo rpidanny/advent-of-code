@@ -2,7 +2,8 @@ import re
 
 
 def evaluate_instruction(instruction: str) -> int:
-    return eval(re.sub(r"[^\d,]", "", instruction).replace(",", "*"))
+    a, b = map(int, re.findall(r"\d{1,3}", instruction))
+    return a * b
 
 
 def part1(inputs: list[str]) -> int:
