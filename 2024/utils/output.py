@@ -29,3 +29,9 @@ def print_grid_dict(grid, mapper=lambda v: str(v), delay=0):
 
     if delay:
         time.sleep(delay)
+
+
+def rotate_90_clockwise(matrix):
+    transposed = list(zip(*matrix))
+    rotated = [list(row)[::-1] for row in transposed]
+    return rotated
