@@ -12,10 +12,10 @@ RUN apt-get update && \
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get install -y \
     nodejs && \
-    npm install -g eslint prettier bun tsx nodemon
+    npm install -g eslint prettier nodemon
 
 # typescript dependencies
-RUN npm install -g typescript
+RUN npm install -g typescript bun tsx
 
 # python dependencies
 RUN apt-get install -y \
