@@ -1,0 +1,26 @@
+{
+  "name": "Advent of Code",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.black-formatter"],
+      "settings": {
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true
+        },
+        "[perl]": {
+          "editor.defaultFormatter": "zhiyuan-lin.simple-perl",
+          "editor.formatOnSave": true
+        },
+        "[c]": {
+          "editor.defaultFormatter": "xaver.clang-format",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  }
+}

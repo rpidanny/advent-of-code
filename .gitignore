@@ -322,3 +322,4 @@ pyrightconfig.json
 package.json
 package-lock.json
 .DS_Store
+local_tests
