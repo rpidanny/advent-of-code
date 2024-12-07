@@ -6,7 +6,7 @@ on:
       - 2019/**
       - .github/workflows/2019*
 env:
-  PYTHON_VERSION: 3.10
+  PYTHON_VERSION: 3.10.15
   YEAR: 2019
 
 jobs:
