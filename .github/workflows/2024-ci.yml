@@ -6,7 +6,7 @@ on:
       - 2024/**
       - .github/workflows/2024*
 env:
-  PYTHON_VERSION: 3.9
+  PYTHON_VERSION: 3.10
   YEAR: 2024
 
 jobs:
