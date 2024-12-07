@@ -12,6 +12,8 @@ class BridgeRepair:
         result: int,
         concat: bool,
     ) -> bool:
+        if result > equation[0]:
+            return False
         if idx >= len(equation[1]):
             return equation[0] == result
         next_val = equation[1][idx]
