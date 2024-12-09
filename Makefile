@@ -49,6 +49,20 @@ else
 endif
 
 
+test-watch: # Run tests in watch mode
+ifndef year
+	@echo "Running all tests for all years"
+	@for year in $(YEARS); do \
+		$(MAKE) -C $$year test-watch; \
+	done
+else ifndef day
+	@$(MAKE) -C $(year) test-watch
+else
+	@echo "Running tests for $(year)/Day$(day)"
+	@+$(MAKE) -C $(year) test-watch day=$(day)
+endif
+
+
 lint: # Run linter
 ifndef year
 	@echo "Running linter for all years"

@@ -1,8 +1,16 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": ["aoc-words"],
+  "dictionaries": [
+    "aoc-words"
+  ],
   "dictionaryDefinitions": [],
-  "words": ["Collinearity"],
-  "ignorePaths": [".github", ".vscode"]
+  "words": [
+    "Collinearity",
+    "Fragmenter"
+  ],
+  "ignorePaths": [
+    ".github",
+    ".vscode"
+  ]
 }

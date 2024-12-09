@@ -29,6 +29,15 @@ else
 	@pytest -v Day$(day) || exit 1
 endif
 
+test-watch: # Run tests in watch mode
+ifndef day
+	@echo "Running all tests for 2024"
+	@ptw -- -vs
+else
+	@echo "$(GREEN)Running tests for Day$(day)...$(NC)"
+	@ptw Day$(day) -- -vs
+endif
+
 lint: # Run linter
 ifndef day
 	@echo "Running linter for 2024"
