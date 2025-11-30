@@ -6,7 +6,7 @@ on:
       - 2025/**
       - .github/workflows/2025*
 env:
-  PYTHON_VERSION: 3.9.6
+  PYTHON_VERSION: 3.10.15
   YEAR: 2025
 
 jobs:
