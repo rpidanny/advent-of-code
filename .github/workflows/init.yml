@@ -2,7 +2,8 @@ name: Init
 
 on:
   schedule: 
-    - cron: '0 4 1-25 12 *' # Every day from December 1st to December 25th at 4am UTC
+    - cron: '0 4 1-12 12 *' # Every day from December 1st to December 12th at 4am UTC: Since 2025 AoC ends on 12th Dec
+
 
 jobs:
   init:
