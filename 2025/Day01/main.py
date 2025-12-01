@@ -10,6 +10,8 @@ from utils.profiling import profile_run
 
 if __name__ == "__main__":
     input_path = f"{os.path.dirname(os.path.realpath(__file__))}/input.txt"
+    # input_path = f"{os.path.dirname(os.path.realpath(__file__))}/input_test.txt"
+
     inputs = get_inputs(input_path)
 
     profile_run("Part 1", lambda: part1(inputs))
