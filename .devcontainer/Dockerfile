@@ -20,7 +20,7 @@ RUN npm install -g typescript bun tsx
 # python dependencies
 RUN apt-get install -y \
     pip pylint isort && \
-    pip install black pytest-watch termcolor
+    pip install black pytest-watch termcolor psutil
 
 # Create alias for 'python' to point to 'python3'
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
