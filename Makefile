@@ -19,6 +19,17 @@ else
 endif
 
 
+
+fetch-problem: # Fetch problem description for a given [year] and [day]
+ifndef year
+	@echo "[year] must be defined"
+else ifndef day
+	@echo "[day] must be defined"
+else
+	@python3 scripts/get_problem.py $(year) $(day)
+endif
+
+
 configure-hooks: # Configure git hooks
 	@echo "Installing Git hooks..."
 	@if [ ! -d "$(GIT_HOOKS_SCRIPTS_DIR)" ]; then \
