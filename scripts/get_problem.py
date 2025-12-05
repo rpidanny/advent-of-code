@@ -17,14 +17,13 @@ def get_problem(year, day):
 
     url = f"https://adventofcode.com/{year}/day/{day}"
     cookies = {"session": session_cookie}
-    headers = {"User-Agent": "github.com/rpidanny/advent-of-code by abhishekmaharjan"}
 
     print(
         f"Using session cookie: {session_cookie[:5]}...{session_cookie[-5:] if len(session_cookie) > 10 else ''}"
     )
 
     try:
-        response = requests.get(url, cookies=cookies, headers=headers)
+        response = requests.get(url, cookies=cookies)
         response.raise_for_status()
     except requests.RequestException as e:
         print(f"Error fetching URL {url}: {e}")
