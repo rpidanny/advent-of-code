@@ -14,10 +14,10 @@ def part1(inputs: list[str]) -> int:
 
     sr, sc = get_start(inputs)
 
-    queue = [(sr + 1, sc)]
+    stack = [(sr + 1, sc)]
 
-    while queue:
-        r, c = queue.pop()
+    while stack:
+        r, c = stack.pop()
 
         grid[r][c] = "|"
 
@@ -27,12 +27,12 @@ def part1(inputs: list[str]) -> int:
                 continue
 
             if grid[nr][c] == ".":
-                queue.append((nr, c))
+                stack.append((nr, c))
             else:
                 for dc in [1, -1]:
                     nc = dc + c
                     if 0 <= nc < n and grid[nr][nc] == ".":
-                        queue.append((nr, nc))
+                        stack.append((nr, nc))
                 count += 1
 
     return count
