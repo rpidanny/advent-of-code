@@ -6,7 +6,7 @@ on:
       - 2025/**
       - .github/workflows/2025*
 env:
-  PYTHON_VERSION: 3.10.15
+  PYTHON_VERSION: pypy3.10-7.3.15 # pypy for performance
   YEAR: 2025
 
 jobs:
