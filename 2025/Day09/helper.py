@@ -21,21 +21,18 @@ def do_lines_intersect(
     if q2 < q1:
         q1, q2 = q2, q1
 
-    # detect orientation: horizontal if y same, vertical if x same
-    p_horizontal = abs(p1[1] - p2[1]) == 0
-    q_horizontal = abs(q1[1] - q2[1]) == 0
+    # determine orientation
+    p_horizontal = p1[1] == p2[1]
+    q_horizontal = q1[1] == q2[1]
 
-    # parallel (including collinear) -> ignore
+    # ignore parallel or collinear segments
     if p_horizontal == q_horizontal:
         return False
 
-    # one horizontal, one vertical -> compute intersection point
+    # one horizontal, one vertical -> check intersection
     if p_horizontal:
         # p is horizontal, q is vertical
-        ix, iy = q1[0], p1[1]
-        # strictly inside both segments (strict inequalities)
-        return (p1[0] < ix < p2[0]) and (q1[1] < iy < q2[1])
+        return p1[0] < q1[0] < p2[0] and q1[1] < p1[1] < q2[1]
     else:
         # p is vertical, q is horizontal
-        ix, iy = p1[0], q1[1]
-        return (q1[0] < ix < q2[0]) and (p1[1] < iy < p2[1])
+        return q1[0] < p1[0] < q2[0] and p1[1] < q1[1] < p2[1]
