@@ -7,14 +7,13 @@ from shapely import Point, Polygon
 
 
 def part1(lines: list[str]) -> int:
-    area = 0
     points = [list(map(int, line.split(","))) for line in lines]
-    m = len(points)
+
+    area, m = 0, len(points)
     for i in range(m - 1):
         for j in range(i + 1, m):
-            x1, y1 = points[i]
-            x2, y2 = points[j]
-            area = max(area, (abs(x1 - x2) + 1) * (abs(y1 - y2) + 1))
+            p1, p2 = points[i], points[j]
+            area = max(area, (abs(p1[0] - p2[0]) + 1) * (abs(p1[1] - p2[1]) + 1))
 
     return area
 
