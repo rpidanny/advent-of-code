@@ -12,19 +12,16 @@ input_test = get_inputs(f"{current_dir}/input_test.txt")
 
 
 class TestPart1:
-    @pytest.mark.skip(reason="not implemented")
     def test_with_test_data(self):
         assert part1(input_test) == 7
 
-    @pytest.mark.skip(reason="not implemented")
     def test_with_real_data(self):
-        assert part1(input) == 1
+        assert part1(input) == 441
 
 
 class TestPart2:
     def test_with_test_data(self):
         assert part2(input_test) == 33
 
-    @pytest.mark.skip(reason="not implemented")
     def test_with_real_data(self):
-        assert part2(input) == 2
+        assert part2(input) == 18559
