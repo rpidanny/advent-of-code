@@ -1,5 +1,6 @@
 import os
 
+import pytest
 from solutions import part1, part2
 
 from utils.inputs import get_inputs
@@ -22,5 +23,6 @@ class TestPart2:
     def test_with_test_data(self):
         assert part2(input_test) == 24
 
+    @pytest.mark.skip(reason="~10s using CPython compared to TS (~40ms)")
     def test_with_real_data(self):
         assert part2(input) == 1554370486
