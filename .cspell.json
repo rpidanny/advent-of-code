@@ -7,7 +7,12 @@
   "dictionaryDefinitions": [],
   "words": [
     "Collinearity",
-    "Fragmenter"
+    "Fragmenter",
+    "joltages",
+    "milp",
+    "numpy",
+    "scipy",
+    "sympy"
   ],
   "ignorePaths": [
     ".github",

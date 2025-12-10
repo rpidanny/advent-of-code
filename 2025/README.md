@@ -1,6 +1,6 @@
 # Initialize environments
 
-- `brew install pypy3.10`
+- `brew install pypy3.10 gcc openblas meson ninja pkg-config`
 - `pypy3 -m venv ~/.venvs/aoc`
 - `source ~/.venvs/aoc/bin/activate`
 - `pip install --upgrade pip`
