@@ -6,7 +6,8 @@ RUN apt-get update && \
     pandoc \ 
     inotify-tools \ 
     bc \ 
-    time
+    time \
+    golang
 
 # javascript dependencies
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \

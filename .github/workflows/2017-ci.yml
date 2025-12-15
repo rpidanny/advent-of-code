@@ -1,0 +1,46 @@
+name: 2017 - Tests (Go)
+
+on:
+  push:
+    paths:
+      - 2017/**
+      - .github/workflows/2017*
+
+env:
+  GO_VERSION: 1.25
+  YEAR: 2017
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go ${{ env.GO_VERSION }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Cache Go modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install dependencies
+        run: go mod tidy
+        working-directory: ./${{ env.YEAR }}
+
+      - name: Lint
+        run: make lint
+        working-directory: ./${{ env.YEAR }}
+
+      - name: Test
+        run: make test
+        working-directory: ./${{ env.YEAR }}
