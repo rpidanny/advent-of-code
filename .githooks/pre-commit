@@ -2,6 +2,18 @@
 
 echo "Running pre-commit hook"
 
-make lint
+# Only consider top-level directories that are numbers (years)
+changed_dirs=$(git diff --cached --name-only | awk -F/ '{print $1}' | grep '^[0-9]\{4\}$' | sort -u)
+
+echo "Changed directories: $changed_dirs"
+
+# Exit early if nothing relevant changed
+[ -z "$changed_dirs" ] && exit 0
+
+# Run make lint for each changed year
+for dir in $changed_dirs; do
+    echo "Running lint for $dir"
+    make lint year="$dir" || exit 1
+done
 
 exit 0
