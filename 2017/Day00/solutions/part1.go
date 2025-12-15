@@ -1,5 +1,5 @@
 package solutions
 
-func Part1(inputs []string) int {
+func Part1(inputs []string) interface{} {
 	return 1
 }
