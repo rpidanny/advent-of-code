@@ -23,11 +23,11 @@ ifndef day
 	@for day in $(shell ls -d */); do \
 		echo "----------------------------------------------------------------------"; \
     echo "$(GREEN)Running tests for $$day...$(NC)"; \
-		cd $$day && go test ./solutions || exit 1; \
+		gotestsum --format short-verbose ./$$day/... || exit 1; \
 	done;
 else
 	@echo "$(GREEN)Running tests for Day$(day)...$(NC)"
-	@cd Day$(day) && go test ./solutions || exit 1
+	@gotestsum --format short-verbose ./Day$(day)/... || exit 1
 endif
 
 test-watch:  # Run tests in watch mode
