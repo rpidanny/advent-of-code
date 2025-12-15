@@ -36,16 +36,11 @@ ifndef day
 	@for day in $(DAYS); do \
 		echo "----------------------------------------------------------------------"; \
 		echo "$(GREEN)Running tests for $$day...$(NC)"; \
-		( \
-			cd $$day && \
-			find . -name '*.go' | entr -c sh -c 'echo "Running tests for $$day..."; gotestsum --format short-verbose ./solutions' \
-		) & \
-	done; \
-	wait
+		cd $$day && gotestsum --watch --format short-verbose ./solutions
+	done;
 else
 	@echo "$(GREEN)Running tests for Day$(day)...$(NC)"; \
-	( cd Day$(day) && \
-		find . -name '*.go' | entr -c sh -c 'echo "Running tests for Day$(day)..."; gotestsum --format short-verbose ./solutions' )
+	cd Day$(day) && gotestsum --watch --format short-verbose ./solutions
 endif
 
 lint: # Run linter
