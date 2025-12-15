@@ -49,11 +49,11 @@ ifndef day
 	@for day in $(shell ls -d */); do \
 		echo "----------------------------------------------------------------------"; \
     echo "$(GREEN)Running linter for $$day...$(NC)"; \
-		go fmt ./$$day || exit 1; \
+		go vet ./$$day || exit 1; \
 	done;
 else
 	@echo "$(GREEN)Running linter for Day$(day)...$(NC)"
-	go fmt ./Day$(day) || exit 1
+	go vet ./Day$(day) || exit 1
 endif
 
 format: # Format code
