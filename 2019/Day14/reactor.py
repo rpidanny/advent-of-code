@@ -63,5 +63,5 @@ class Reactor:
             self.chemicals[chemical] += reaction.op.quantity * multiplier - quantity
             return ore
 
-    def get_ore_for_fuel(self, quantity: int):
+    def get_fuel_from_ore(self, quantity: int):
         return 1
